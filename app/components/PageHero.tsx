@@ -1,5 +1,4 @@
-import { CSSProperties } from "react";
-import { eyebrow, h2Base, MANROPE } from "./theme";
+import { eyebrow, MANROPE } from "./theme";
 import { Reveal } from "./Reveal";
 
 interface PageHeroProps {
@@ -9,7 +8,12 @@ interface PageHeroProps {
   eyebrowText?: string;
 }
 
-export function PageHero({ title, subtitle, bgImage, eyebrowText }: PageHeroProps) {
+export function PageHero({
+  title,
+  subtitle,
+  bgImage,
+  eyebrowText,
+}: PageHeroProps) {
   const overlay =
     "linear-gradient(180deg, rgba(28,28,30,.6) 0%, rgba(28,28,30,.35) 40%, rgba(28,28,30,.75) 100%)";
 
@@ -57,7 +61,11 @@ export function PageHero({ title, subtitle, bgImage, eyebrowText }: PageHeroProp
         }}
       >
         <Reveal>
-          {eyebrowText && <div style={{ ...eyebrow, color: "#EE6A22", marginBottom: 12 }}>{eyebrowText}</div>}
+          {eyebrowText && (
+            <div style={{ ...eyebrow, color: "#EE6A22", marginBottom: 12 }}>
+              {eyebrowText}
+            </div>
+          )}
           <h1
             style={{
               fontFamily: MANROPE,

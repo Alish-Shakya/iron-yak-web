@@ -53,10 +53,10 @@ export function Nav() {
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/assets/IronYak1.svg"
+            src="/assets/primary.png"
             alt="Iron Yak Tours & Travels"
             style={{
-              height: 75,
+              height: "30px",
               width: "auto",
               display: "block",
               filter: solid ? "none" : "drop-shadow(0 2px 8px rgba(0,0,0,.45))",
