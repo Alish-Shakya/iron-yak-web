@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { slides } from "../data/site";
-import { MANROPE, MONO } from "./theme";
+import { MANROPE, MONO, eyebrow } from "./theme";
 import { RouteMap } from "./RouteMap";
 import { PrimaryButton, GhostButton } from "./buttons";
 
@@ -41,6 +41,7 @@ export function Hero() {
               zIndex: on ? 2 : 1,
               pointerEvents: on ? "auto" : "none",
               transition: "opacity 1.4s ease",
+              padding: "0 clamp(20px,5vw,64px)",
             }}
           >
             <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
@@ -68,45 +69,57 @@ export function Hero() {
                 zIndex: 2,
                 flex: 1,
                 width: "100%",
+                maxWidth: 1200,
+                margin: "0 auto",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
-                padding: "clamp(72px,9vh,120px) clamp(20px,5vw,64px) 0",
-                maxWidth: 960,
+                padding: "clamp(72px,9vh,120px) 0 0",
               }}
             >
-              <h1
-                className="iy-balance"
-                style={{
-                  fontFamily: MANROPE,
-                  fontWeight: 800,
-                  color: "#fff",
-                  fontSize: "clamp(44px,7vw,92px)",
-                  lineHeight: 1.02,
-                  letterSpacing: "-.03em",
-                  margin: "0 0 22px",
-                  textShadow: "0 2px 30px rgba(0,0,0,.25)",
-                }}
-              >
-                {s.title[0]}
-                <br />
-                {s.title[1]}
-              </h1>
-              <p
-                className="iy-pretty"
-                style={{
-                  color: "rgba(255,255,255,.9)",
-                  fontSize: "clamp(17px,1.5vw,21px)",
-                  lineHeight: 1.55,
-                  maxWidth: 560,
-                  margin: "0 0 38px",
-                }}
-              >
-                {s.sub}
-              </p>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 14 }}>
-                <PrimaryButton href="#destinations">Explore Tours →</PrimaryButton>
-                <GhostButton href="#footer">Plan Your Journey</GhostButton>
+              <div style={{ maxWidth: 720 }}>
+                <div
+                  style={{
+                    ...eyebrow,
+                    marginBottom: 16,
+                    textShadow: "0 2px 20px rgba(0,0,0,.35)",
+                  }}
+                >
+                  Guided Himalayan Treks
+                </div>
+                <h1
+                  className="iy-balance"
+                  style={{
+                    fontFamily: MANROPE,
+                    fontWeight: 800,
+                    color: "#fff",
+                    fontSize: "clamp(30px,4vw,58px)",
+                    lineHeight: 1.05,
+                    letterSpacing: "-.03em",
+                    margin: "0 0 22px",
+                    textShadow: "0 2px 30px rgba(0,0,0,.25)",
+                  }}
+                >
+                  {s.title[0]}
+                  <br />
+                  {s.title[1]}
+                </h1>
+                <p
+                  className="iy-pretty"
+                  style={{
+                    color: "rgba(255,255,255,.9)",
+                    fontSize: "clamp(14px,1.1vw,16px)",
+                    lineHeight: 1.55,
+                    maxWidth: 540,
+                    margin: "0 0 38px",
+                  }}
+                >
+                  {s.sub}
+                </p>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 14 }}>
+                  <PrimaryButton href="/destinations">Explore Tours →</PrimaryButton>
+                  <GhostButton href="/contact">Plan Your Journey</GhostButton>
+                </div>
               </div>
             </div>
 
@@ -115,10 +128,10 @@ export function Hero() {
                 position: "relative",
                 width: "100%",
                 zIndex: 2,
-                padding: "0 clamp(20px,5vw,64px) clamp(24px,4vh,44px)",
+                padding: "0 0 clamp(24px,4vh,44px)",
               }}
             >
-              <div style={{ maxWidth: 1120, margin: "0 auto", filter: "drop-shadow(0 2px 12px rgba(0,0,0,.45))" }}>
+              <div style={{ maxWidth: 1200, margin: "0 auto", filter: "drop-shadow(0 2px 12px rgba(0,0,0,.45))" }}>
                 <div
                   style={{
                     display: "flex",

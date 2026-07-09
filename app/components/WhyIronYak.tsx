@@ -15,14 +15,7 @@ export function WhyIronYak() {
           </h2>
         </Reveal>
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,280px),1fr))",
-            gap: 18,
-            marginBottom: 64,
-          }}
-        >
+        <div className="iy-why-grid">
           {features.map((f) => (
             <Reveal key={f.title} className="iy-feat">
               <div
@@ -45,23 +38,25 @@ export function WhyIronYak() {
               <div style={{ color: MUTED, fontSize: 15, lineHeight: 1.6 }}>{f.desc}</div>
             </Reveal>
           ))}
-        </div>
 
-        <Reveal
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit,minmax(150px,1fr))",
-            gap: 20,
-            textAlign: "center",
-          }}
-        >
-          {stats.map((s) => (
-            <div key={s.label}>
-              <Counter target={s.target} suffix={s.suffix} />
-              <div style={{ color: MUTED, fontSize: 15, fontWeight: 500, marginTop: 4 }}>{s.label}</div>
-            </div>
-          ))}
-        </Reveal>
+          <Reveal className="iy-stats">
+            {stats.map((s) => (
+              <div
+                key={s.label}
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  textAlign: "center",
+                }}
+              >
+                <Counter target={s.target} suffix={s.suffix} />
+                <div style={{ color: MUTED, fontSize: 15, fontWeight: 500, marginTop: 4 }}>{s.label}</div>
+              </div>
+            ))}
+          </Reveal>
+        </div>
       </div>
     </section>
   );

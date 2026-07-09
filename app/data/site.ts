@@ -125,6 +125,7 @@ export type Destination = {
   title: string;
   badge: string;
   price: string;
+  slug: string;
 };
 
 export const destinations: Destination[] = [
@@ -132,37 +133,43 @@ export const destinations: Destination[] = [
     img: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=900&q=80",
     title: "Everest Base Camp",
     badge: "14 days · Strenuous",
-    price: "$1,890",
+    price: "NRP 1,890",
+    slug: "everest-base-camp",
   },
   {
     img: "https://images.unsplash.com/photo-1472791108553-c9405341e398?auto=format&fit=crop&w=900&q=80",
     title: "Annapurna Circuit",
     badge: "12 days · Moderate",
-    price: "$1,540",
+    price: "NRP 1,540",
+    slug: "annapurna-circuit",
   },
   {
     img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=900&q=80",
     title: "Langtang Valley",
     badge: "8 days · Moderate",
-    price: "$980",
+    price: "NRP 980",
+    slug: "langtang-valley",
   },
   {
     img: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=900&q=80",
     title: "Upper Mustang",
     badge: "11 days · Remote",
-    price: "$2,120",
+    price: "NRP 2,120",
+    slug: "upper-mustang",
   },
   {
     img: "https://images.unsplash.com/photo-1544550581-5f7ceaf7f992?auto=format&fit=crop&w=900&q=80",
     title: "Pokhara & Lakes",
     badge: "5 days · Easy",
-    price: "$640",
+    price: "NRP 640",
+    slug: "pokhara-and-lakes",
   },
   {
     img: "https://images.unsplash.com/photo-1549366021-9f761d450615?auto=format&fit=crop&w=900&q=80",
     title: "Chitwan Jungle",
     badge: "4 days · Safari",
-    price: "$520",
+    price: "NRP 520",
+    slug: "chitwan-jungle",
   },
 ];
 
@@ -246,6 +253,34 @@ export const testimonials: Testimonial[] = [
     name: "Lucas Meyer",
     trip: "Upper Mustang · DE",
   },
+  {
+    quote:
+      '"The jungle safari exceeded every expectation. We spotted a rhino within an hour and our naturalist knew every bird call by heart."',
+    avatar: "https://randomuser.me/api/portraits/women/12.jpg",
+    name: "Priya Nair",
+    trip: "Chitwan Jungle · IN",
+  },
+  {
+    quote:
+      '"Sunrise over Machhapuchhre from Sarangkot was worth every early alarm. The whole Pokhara trip was relaxed yet packed with wonder."',
+    avatar: "https://randomuser.me/api/portraits/men/19.jpg",
+    name: "Diego Fernández",
+    trip: "Pokhara & Lakes · ES",
+  },
+  {
+    quote:
+      "\"Crossing Thorong La was the hardest thing I've done, but the team's encouragement got us all over the pass. Life-changing.\"",
+    avatar: "https://randomuser.me/api/portraits/women/90.jpg",
+    name: "Amara Johnson",
+    trip: "Annapurna Circuit · CA",
+  },
+  {
+    quote:
+      '"Small group, big heart. Our porters and guide became friends by the end. I\'m already planning my next Iron Yak adventure."',
+    avatar: "https://randomuser.me/api/portraits/men/54.jpg",
+    name: "Oliver Bennett",
+    trip: "Everest Base Camp · AU",
+  },
 ];
 
 export type FooterLink = { label: string; href: string };
@@ -254,19 +289,22 @@ export const footerColumns: { title: string; links: FooterLink[] }[] = [
   {
     title: "Explore",
     links: [
-      { label: "Destinations", href: "#destinations" },
-      { label: "Treks", href: "#experience" },
-      { label: "Adventures", href: "#why" },
-      { label: "Stories", href: "#stories" },
+      { label: "Home", href: "/" },
+      { label: "Destinations", href: "/destinations" },
+      {
+        label: "Signature Experience",
+        href: "/destinations/everest-base-camp",
+      },
+      { label: "Services", href: "/services" },
     ],
   },
   {
     title: "Company",
     links: [
-      { label: "About us", href: "#" },
+      { label: "About us", href: "/about" },
       { label: "Sustainability", href: "#" },
       { label: "Careers", href: "#" },
-      { label: "Contact", href: "#footer" },
+      { label: "Contact", href: "/contact" },
     ],
   },
 ];
@@ -278,9 +316,9 @@ export const socials: { label: string; icon: string }[] = [
 ];
 
 export const navLinks: FooterLink[] = [
-  { label: "Destinations", href: "#destinations" },
-  { label: "Treks", href: "#experience" },
-  { label: "Adventures", href: "#why" },
-  { label: "Stories", href: "#stories" },
-  { label: "Contact", href: "#footer" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Destinations", href: "/destinations" },
+  { label: "Services", href: "/services" },
+  { label: "Contact", href: "/contact" },
 ];

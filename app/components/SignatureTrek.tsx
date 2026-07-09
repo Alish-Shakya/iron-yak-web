@@ -60,7 +60,7 @@ export function SignatureTrek() {
             ))}
           </div>
           <PrimaryButton
-            href="#footer"
+            href="/destinations/everest-base-camp"
             padding="15px 30px"
             shadow="0 10px 26px rgba(238,106,34,.36)"
             hoverShadow="0 10px 26px rgba(238,106,34,.36)"

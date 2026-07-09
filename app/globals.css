@@ -19,8 +19,9 @@ a:hover { color: #EE6A22; }
 @keyframes iy-zoom { from { transform: scale(1); } to { transform: scale(1.14); } }
 @keyframes iy-travel { from { offset-distance: 0%; } to { offset-distance: 100%; } }
 
-/* traveling route marker */
-.iy-marker { offset-rotate: 0deg; offset-distance: 0%; filter: drop-shadow(0 0 5px rgba(238,106,34,.85)); }
+/* traveling route marker (bird) — banks along the path as it flies; the
+   wingbeat + bob are driven by SMIL <animateTransform> inside the SVG. */
+.iy-marker { offset-rotate: auto; offset-distance: 0%; filter: drop-shadow(0 1px 2px rgba(0,0,0,.55)); }
 .iy-marker.iy-run { animation: iy-travel var(--iy-dur, 7s) linear forwards; }
 .iy-slide { will-change: opacity; }
 
@@ -56,6 +57,30 @@ a:hover { color: #EE6A22; }
   transition: transform .4s ease, box-shadow .4s ease;
 }
 .iy-feat:hover { transform: translateY(-6px); box-shadow: 0 20px 44px rgba(28,28,30,.1); }
+
+/* "Why Iron Yak" grid: feature cards + stats sharing one grid so the stats
+   fill the empty space beside the last two cards (two up, two down). */
+.iy-why-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: 1fr;
+}
+/* stats: 2×2 block (two up, two down) */
+.iy-why-grid .iy-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-content: center;
+  gap: 24px 20px;
+}
+@media (min-width: 640px) {
+  .iy-why-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1000px) {
+  .iy-why-grid { grid-template-columns: repeat(4, 1fr); }
+  /* sit beside the last two cards, spanning both right-hand columns and
+     fitting within a single card's height */
+  .iy-why-grid .iy-stats { grid-column: 3 / span 2; }
+}
 
 /* footer social icons */
 .iy-social {

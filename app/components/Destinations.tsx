@@ -1,5 +1,6 @@
+import Link from "next/link";
 import { destinations } from "../data/site";
-import { eyebrow, h2Base, MANROPE, MUTED } from "./theme";
+import { eyebrow, h2Base, MANROPE, MUTED, ORANGE } from "./theme";
 import { Reveal } from "./Reveal";
 
 /** "Featured Destinations" — a responsive grid of trek cards. */
@@ -23,15 +24,30 @@ export function Destinations() {
               Where the Himalaya opens its doors
             </h2>
           </div>
-          <p style={{ color: MUTED, fontSize: 16, lineHeight: 1.6, maxWidth: 340, margin: 0 }}>
-            Six regions, each with its own rhythm — from glacier-fed base camps to jungle lowlands and lakeside calm.
-          </p>
+          <Link
+            href="/destinations"
+            className="iy-viewall"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+              color: ORANGE,
+              fontFamily: MANROPE,
+              fontWeight: 700,
+              fontSize: 16,
+              textDecoration: "none",
+              whiteSpace: "nowrap",
+            }}
+          >
+            View all destinations
+            <span aria-hidden style={{ fontSize: 18, lineHeight: 1 }}>→</span>
+          </Link>
         </Reveal>
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,320px),1fr))", gap: 22 }}>
-          {destinations.map((d) => (
+          {destinations.slice(1, 4).map((d) => (
             <Reveal key={d.title}>
-              <a href="#" className="iy-card">
+              <Link href={`/destinations/${d.slug}`} className="iy-card" style={{ textDecoration: "none" }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={d.img} alt={d.title} loading="lazy" decoding="async" />
                 <div className="iy-card-scrim" />
@@ -54,7 +70,7 @@ export function Destinations() {
                   </div>
                   <div style={{ fontSize: 14, color: "rgba(255,255,255,.85)", marginTop: 4 }}>from {d.price}</div>
                 </div>
-              </a>
+              </Link>
             </Reveal>
           ))}
         </div>
