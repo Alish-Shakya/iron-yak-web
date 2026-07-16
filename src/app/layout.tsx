@@ -1,17 +1,54 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-import {
-  siteUrl,
-  siteName,
-  defaultTitle,
-  defaultDescription,
-  defaultOgImage,
-  organizationLd,
-  websiteLd,
-} from "../../app/lib/seo";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
+
+const siteUrl = "https://ironyaktours.com";
+const siteName = "Iron Yak Tours & Travels";
+const defaultTitle = "Iron Yak Tours & Travels — Explore Nepal beyond the ordinary";
+const defaultDescription =
+  "Breathtaking mountains, unforgettable adventures, and the warm, authentic hospitality of the Himalaya — crafted into journeys you'll never forget.";
+const defaultOgImage = "/assets/primary-orig.png";
+
+const organizationLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: siteName,
+  url: siteUrl,
+  logo: `${siteUrl}/assets/IronYak.svg`,
+  description: defaultDescription,
+  foundingDate: "2011",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Thamel, Ward 26",
+    addressLocality: "Kathmandu",
+    addressCountry: "NP",
+  },
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      telephone: "+977-1-4700812",
+      contactType: "customer service",
+    },
+  ],
+  sameAs: ["https://instagram.com/ironyaktours", "https://facebook.com/ironyaktours"],
+};
+
+const websiteLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: siteName,
+  url: siteUrl,
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: `${siteUrl}/destinations?q={search_term_string}`,
+    },
+    "query-input": "required name=search_term_string",
+  },
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

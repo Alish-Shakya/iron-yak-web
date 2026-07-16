@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
-import { siteUrl } from "./seo";
+
+const siteUrl = "https://ironyaktours.com";
 
 export default function robots(): MetadataRoute.Robots {
   return {

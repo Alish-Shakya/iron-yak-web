@@ -10,18 +10,17 @@ const DUR = 7.2; // seconds each route is shown
 /** Full-viewport hero: a cross-fading slideshow, each slide with its own trek route map. */
 export function Hero() {
   const [cur, setCur] = useState(0);
-  const [reduce, setReduce] = useState(false);
-
-  useEffect(() => {
-    setReduce(!!window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
-  }, []);
+  const [reduce] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return !!window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  });
 
   useEffect(() => {
     const wait = reduce ? 5200 : DUR * 1000 + 400;
     const t = setTimeout(() => setCur((c) => (c + 1) % slides.length), wait);
     return () => clearTimeout(t);
   }, [cur, reduce]);
-
+ 
   return (
     <header id="top" className="relative h-screen min-h-[660px] overflow-hidden">
       {slides.map((s, idx) => {

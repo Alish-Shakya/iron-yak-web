@@ -17,8 +17,46 @@ export default function DestinationDetailPage() {
     notFound();
   }
 
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://ironyaktours.com" },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Destinations",
+        item: "https://ironyaktours.com/destinations",
+      },
+      { "@type": "ListItem", position: 3, name: itinerary.title },
+    ],
+  };
+
+  const productLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: itinerary.title,
+    description: `${itinerary.title}: ${itinerary.duration}, ${itinerary.difficulty}, max altitude ${itinerary.maxAltitude}.`,
+    image: itinerary.bgImage,
+    offers: {
+      "@type": "Offer",
+      price: itinerary.price.replace("NRP ", ""),
+      priceCurrency: "NPR",
+      availability: "https://schema.org/InStock",
+    },
+    brand: { "@type": "Brand", name: "Iron Yak Tours & Travels" },
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productLd) }}
+      />
       <PageHero
         title={itinerary.title}
         subtitle={`Journey through stunning landscapes and explore custom routes with certified local guides.`}

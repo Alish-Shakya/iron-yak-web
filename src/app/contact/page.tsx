@@ -3,6 +3,18 @@ import { Reveal } from "@/components/ui/Reveal";
 import { ContactInfo } from "@/components/contact/ContactInfo";
 import { BookingForm } from "@/components/contact/BookingForm";
 import { FaqSection } from "@/components/contact/FaqSection";
+import { Metadata } from "next/dist/lib/metadata/types/metadata-interface";
+
+export const metadata: Metadata = {
+  title: "Contact",
+  description:
+    "Get in touch with Iron Yak Tours & Travels in Kathmandu, Nepal. Plan your custom Himalayan trek with our expert team.",
+  openGraph: {
+    title: "Contact Iron Yak Tours & Travels",
+    description:
+      "Ready to plan your Nepal trek? Contact our Kathmandu office for custom itineraries and expert advice.",
+  },
+};
 
 export default function ContactPage() {
   return (

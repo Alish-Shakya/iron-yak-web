@@ -1,37 +1,36 @@
 import type { MetadataRoute } from "next";
-import { siteUrl } from "./seo";
-import { itineraries } from "../data/itineraries";
+import { itineraries } from "@/data/itineraries";
+
+const siteUrl = "https://ironyaktours.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = siteUrl;
-
   const staticRoutes: MetadataRoute.Sitemap = [
     {
-      url: baseUrl,
+      url: siteUrl,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 1,
     },
     {
-      url: `${baseUrl}/about`,
+      url: `${siteUrl}/about`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
-      url: `${baseUrl}/services`,
+      url: `${siteUrl}/services`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
-      url: `${baseUrl}/destinations`,
+      url: `${siteUrl}/destinations`,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/contact`,
+      url: `${siteUrl}/contact`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.5,
@@ -39,7 +38,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   const trekRoutes: MetadataRoute.Sitemap = itineraries.map((it) => ({
-    url: `${baseUrl}/destinations/${it.slug}`,
+    url: `${siteUrl}/destinations/${it.slug}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.8,

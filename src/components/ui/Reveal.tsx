@@ -17,15 +17,15 @@ type RevealProps = {
  */
 export function Reveal({ children, className = "", style, as: Tag = "div", ...rest }: RevealProps) {
   const ref = useRef<HTMLElement>(null);
-  const [inView, setInView] = useState(false);
+  const [inView, setInView] = useState(() => {
+    if (typeof window !== "undefined" && !("IntersectionObserver" in window)) return true;
+    return false;
+  });
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    if (!("IntersectionObserver" in window)) {
-      setInView(true);
-      return;
-    }
+    if (!("IntersectionObserver" in window)) return;
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
