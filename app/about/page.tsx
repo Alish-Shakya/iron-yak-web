@@ -1,7 +1,19 @@
+import type { Metadata } from "next";
 import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
 import { Counter } from "../components/Counter";
 import { stats } from "../data/site";
+
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "Iron Yak Tours & Travels — founded in 2011 by Sherpa guides in Kathmandu. Certified local experts crafting authentic Himalayan treks with safety and community at heart.",
+  openGraph: {
+    title: "About Iron Yak Tours & Travels",
+    description:
+      "Founded in 2011 by Sherpa guides. Certified local experts crafting authentic Himalayan treks with safety and community at heart.",
+  },
+};
 
 /** Small uppercase section eyebrow (matches `eyebrow` in theme.ts + a 12px gap). */
 const EYEBROW =

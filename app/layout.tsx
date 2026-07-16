@@ -2,11 +2,49 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
+import {
+  siteUrl,
+  siteName,
+  defaultTitle,
+  defaultDescription,
+  defaultOgImage,
+  organizationLd,
+  websiteLd,
+} from "./lib/seo";
 
 export const metadata: Metadata = {
-  title: "Iron Yak Tours & Travels — Explore Nepal beyond the ordinary",
-  description:
-    "Breathtaking mountains, unforgettable adventures, and the warm, authentic hospitality of the Himalaya — crafted into journeys you'll never forget.",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: defaultTitle,
+    template: `%s | Iron Yak Tours & Travels`,
+  },
+  description: defaultDescription,
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: siteUrl,
+    siteName,
+    title: defaultTitle,
+    description: defaultDescription,
+    images: [{ url: defaultOgImage, width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: defaultTitle,
+    description: defaultDescription,
+    images: [defaultOgImage],
+  },
+  icons: {
+    icon: "/assets/IronYak.svg",
+    apple: "/assets/IronYak.svg",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  alternates: {
+    canonical: siteUrl,
+  },
 };
 
 export default function RootLayout({
@@ -17,6 +55,14 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full antialiased">
       <body className="min-h-full">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteLd) }}
+        />
         <div
           id="iy-root"
           className="flex min-h-screen flex-col overflow-x-hidden bg-[#ffffff] font-['Inter',sans-serif] text-[#3A3A3C]"
