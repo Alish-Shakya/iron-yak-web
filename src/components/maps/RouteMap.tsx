@@ -11,11 +11,14 @@ export function RouteMap({
   stops,
   running,
   reduce,
+  labelScale = 1,
 }: {
   pathD: string;
   stops: RouteStop[];
   running: boolean;
   reduce: boolean;
+  /** Scales the station labels up for narrower containers (e.g. the detail-page sidebar). */
+  labelScale?: number;
 }) {
   const markerStyle = {
     offsetPath: `path('${pathD}')`,
@@ -24,9 +27,17 @@ export function RouteMap({
 
   const fly = running && !reduce; // travel + wingbeat only while this slide is live
 
+  // Labels sit below the drop lines (which end at y=128); grow them with labelScale
+  // and push the coord line down so the two rows never collide.
+  const nameSize = 14 * labelScale;
+  const coordSize = 9.5 * labelScale;
+  const nameY = 128 + 3 + nameSize;
+  const coordY = nameY + 4 + coordSize;
+  const viewH = Math.max(172, coordY + 6);
+
   return (
     <svg
-      viewBox="0 0 1000 172"
+      viewBox={`0 0 1000 ${viewH}`}
       width="100%"
       className="block overflow-visible"
       fontFamily="'Manrope',sans-serif"
@@ -149,20 +160,20 @@ export function RouteMap({
           <g key={i}>
             <text
               x={s.x}
-              y={143}
+              y={nameY}
               fontWeight="700"
-              fontSize="14"
-              letterSpacing="1"
+              fontSize={nameSize}
+              letterSpacing={labelScale}
               fill={i === 0 ? "#EE6A22" : "#ffffff"}
             >
               {s.name}
             </text>
             <text
               x={s.x}
-              y={158}
+              y={coordY}
               fontFamily="ui-monospace,Menlo,monospace"
-              fontSize="9.5"
-              letterSpacing=".5"
+              fontSize={coordSize}
+              letterSpacing={0.5 * labelScale}
               fill="rgba(255,255,255,.5)"
             >
               {s.coord}

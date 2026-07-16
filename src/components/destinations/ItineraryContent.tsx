@@ -72,7 +72,7 @@ export function ItineraryContent({ itinerary }: { itinerary: Itinerary }) {
               </p>
 
               <div className="[filter:drop-shadow(0_2px_10px_rgba(0,0,0,.45))]">
-                <RouteMap pathD={itinerary.pathD} stops={itinerary.stops} running={true} reduce={false} />
+                <RouteMap pathD={itinerary.pathD} stops={itinerary.stops} running={true} reduce={false} labelScale={2} />
               </div>
 
               <div className="mt-10 border-t border-[rgba(255,255,255,0.12)] pt-[30px]">
