@@ -11,8 +11,8 @@ const stats = [
 export function SignatureTrek() {
   return (
     <section id="experience" className="px-[clamp(20px,5vw,64px)] py-[clamp(50px,7vw,90px)]">
-      <Reveal className="mx-auto my-0 grid max-w-[1200px] grid-cols-[1.05fr_1fr] overflow-hidden rounded-[28px] bg-[#1C1C1E]">
-        <div className="relative min-h-[440px]">
+      <Reveal className="mx-auto my-0 grid max-w-[1200px] grid-cols-1 md:grid-cols-[1.05fr_1fr] overflow-hidden rounded-[28px] bg-[#1C1C1E]">
+        <div className="relative min-h-[240px] md:min-h-[440px]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="https://images.unsplash.com/photo-1486911278844-a81c5267e227?auto=format&fit=crop&w=1200&q=80"

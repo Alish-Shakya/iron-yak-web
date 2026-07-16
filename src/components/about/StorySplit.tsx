@@ -9,7 +9,7 @@ export function StorySplit() {
   return (
     <section className="px-[clamp(20px,5vw,64px)] pt-20 pb-[50px]">
       <div className="mx-auto max-w-[1200px]">
-        <div className="grid grid-cols-[1fr_1fr] items-center gap-[50px]">
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] items-center gap-10 md:gap-[50px]">
           <Reveal>
             <div className={EYEBROW}>Our Heritage</div>
             <h2 className={`${HEADING} mb-5`}>

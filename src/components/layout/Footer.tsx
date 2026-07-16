@@ -16,8 +16,8 @@ export function Footer() {
       className="bg-[#1C1C1E] text-white pt-[clamp(56px,7vw,88px)] px-[clamp(20px,5vw,64px)] pb-10"
     >
       <div className="mx-auto max-w-[1200px]">
-        <div className="grid grid-cols-[1.6fr_1fr_1fr_1.4fr] gap-10 pb-[52px] border-b border-[rgba(255,255,255,0.12)]">
-          <div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-[1.6fr_1fr_1fr_1.4fr] gap-8 md:gap-10 pb-10 md:pb-[52px] border-b border-[rgba(255,255,255,0.12)]">
+          <div className="sm:col-span-2 md:col-span-1">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/assets/primary.png"
@@ -65,7 +65,7 @@ export function Footer() {
             </div>
           ))}
 
-          <div>
+          <div className="sm:col-span-2 md:col-span-1">
             <div className="font-[Manrope,sans-serif] font-bold text-[15px] mb-[18px]">
               Trail notes
             </div>
