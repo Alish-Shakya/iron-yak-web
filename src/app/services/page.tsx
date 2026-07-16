@@ -1,6 +1,18 @@
 import { PageHero } from "@/components/ui/PageHero";
 import { Reveal } from "@/components/ui/Reveal";
 import { PrimaryButton } from "@/components/ui/buttons";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Services",
+  description:
+    "End-to-end Himalayan trekking services — certified Sherpa guides, permits & logistics, custom itineraries, tea house stays, gear rental, and helicopter rescue support.",
+  openGraph: {
+    title: "Services | Iron Yak Tours & Travels",
+    description:
+      "Comprehensive Himalayan logistics, safety networks, and tailored trek designs for a seamless adventure in Nepal.",
+  },
+};
 
 /** Small uppercase section eyebrow (matches `eyebrow` in theme.ts + a 12px gap). */
 const EYEBROW =
