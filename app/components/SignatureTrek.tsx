@@ -1,4 +1,3 @@
-import { eyebrow, h2Base, INK, MANROPE } from "./theme";
 import { Reveal } from "./Reveal";
 import { PrimaryButton } from "./buttons";
 
@@ -11,51 +10,33 @@ const stats = [
 /** Dark split panel spotlighting the flagship Everest Base Camp trek. */
 export function SignatureTrek() {
   return (
-    <section id="experience" style={{ padding: "clamp(50px,7vw,90px) clamp(20px,5vw,64px)" }}>
-      <Reveal
-        style={{
-          maxWidth: 1200,
-          margin: "0 auto",
-          background: INK,
-          borderRadius: 28,
-          overflow: "hidden",
-          display: "grid",
-          gridTemplateColumns: "1.05fr 1fr",
-        }}
-      >
-        <div style={{ position: "relative", minHeight: 440 }}>
+    <section id="experience" className="px-[clamp(20px,5vw,64px)] py-[clamp(50px,7vw,90px)]">
+      <Reveal className="mx-auto my-0 grid max-w-[1200px] grid-cols-[1.05fr_1fr] overflow-hidden rounded-[28px] bg-[#1C1C1E]">
+        <div className="relative min-h-[440px]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="https://images.unsplash.com/photo-1486911278844-a81c5267e227?auto=format&fit=crop&w=1200&q=80"
             alt="Everest Base Camp trail"
             loading="lazy"
             decoding="async"
-            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+            className="absolute inset-0 h-full w-full object-cover"
           />
         </div>
-        <div
-          style={{
-            padding: "clamp(34px,4vw,64px)",
-            color: "#fff",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-          }}
-        >
-          <div style={{ ...eyebrow, marginBottom: 16 }}>Signature Trek</div>
-          <h2 className="iy-balance" style={{ ...h2Base, fontSize: "clamp(30px,3.6vw,46px)", lineHeight: 1.06, margin: "0 0 20px" }}>
+        <div className="flex flex-col justify-center p-[clamp(34px,4vw,64px)] text-white">
+          <div className="mb-4 text-[14px] font-bold uppercase tracking-[0.14em] text-[#EE6A22]">Signature Trek</div>
+          <h2 className="mt-0 mb-5 font-[Manrope,sans-serif] text-[clamp(30px,3.6vw,46px)] font-extrabold leading-[1.06] tracking-[-0.03em] text-balance">
             The Everest Base Camp Trek
           </h2>
-          <p className="iy-pretty" style={{ color: "rgba(255,255,255,.72)", fontSize: 17, lineHeight: 1.65, margin: "0 0 30px" }}>
+          <p className="mt-0 mb-[30px] text-[17px] leading-[1.65] text-[rgba(255,255,255,.72)] text-pretty">
             Fourteen days along the Khumbu — through Sherpa villages, over swaying suspension bridges, past monasteries
             humming with prayer, to the foot of the world&apos;s highest peak. Small groups, licensed guides, unhurried
             acclimatisation.
           </p>
-          <div style={{ display: "flex", gap: 34, marginBottom: 34, flexWrap: "wrap" }}>
+          <div className="mb-[34px] flex flex-wrap gap-[34px]">
             {stats.map((s) => (
               <div key={s.label}>
-                <div style={{ fontFamily: MANROPE, fontWeight: 800, fontSize: 30 }}>{s.value}</div>
-                <div style={{ color: "rgba(255,255,255,.55)", fontSize: 13, marginTop: 2 }}>{s.label}</div>
+                <div className="font-[Manrope,sans-serif] text-[30px] font-extrabold">{s.value}</div>
+                <div className="mt-0.5 text-[13px] text-[rgba(255,255,255,.55)]">{s.label}</div>
               </div>
             ))}
           </div>

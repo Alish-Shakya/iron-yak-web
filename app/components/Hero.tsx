@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { slides } from "../data/site";
-import { MANROPE, MONO, eyebrow } from "./theme";
 import { RouteMap } from "./RouteMap";
 import { PrimaryButton, GhostButton } from "./buttons";
 
@@ -24,139 +23,61 @@ export function Hero() {
   }, [cur, reduce]);
 
   return (
-    <header id="top" style={{ position: "relative", height: "100vh", minHeight: 660, overflow: "hidden" }}>
+    <header id="top" className="relative h-screen min-h-[660px] overflow-hidden">
       {slides.map((s, idx) => {
         const on = idx === cur;
         return (
           <div
             key={idx}
-            className="iy-slide"
-            style={{
-              position: "absolute",
-              inset: 0,
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              opacity: on ? 1 : 0,
-              zIndex: on ? 2 : 1,
-              pointerEvents: on ? "auto" : "none",
-              transition: "opacity 1.4s ease",
-              padding: "0 clamp(20px,5vw,64px)",
-            }}
+            className={`absolute inset-0 flex flex-col justify-center py-0 px-[clamp(20px,5vw,64px)] [transition:opacity_1.4s_ease] [will-change:opacity] ${
+              on ? "opacity-100 z-[2] pointer-events-auto" : "opacity-0 z-[1] pointer-events-none"
+            }`}
           >
-            <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
+            <div className="absolute inset-0 overflow-hidden">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                className="iy-hero-img"
+                className="h-full w-full object-cover [will-change:transform]"
                 src={s.img}
                 alt={s.imgAlt}
                 loading={idx === 0 ? "eager" : "lazy"}
                 decoding="async"
                 style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  willChange: "transform",
                   animation: on && !reduce ? `iy-zoom ${DUR + 2}s ease-out forwards` : "none",
                 }}
               />
-              <div style={{ position: "absolute", inset: 0, background: s.overlay }} />
+              <div className="absolute inset-0" style={{ background: s.overlay }} />
             </div>
 
-            <div
-              style={{
-                position: "relative",
-                zIndex: 2,
-                flex: 1,
-                width: "100%",
-                maxWidth: 1200,
-                margin: "0 auto",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                padding: "clamp(72px,9vh,120px) 0 0",
-              }}
-            >
-              <div style={{ maxWidth: 720 }}>
-                <div
-                  style={{
-                    ...eyebrow,
-                    marginBottom: 16,
-                    textShadow: "0 2px 20px rgba(0,0,0,.35)",
-                  }}
-                >
+            <div className="relative z-[2] flex-1 w-full max-w-[1200px] mx-auto my-0 flex flex-col justify-center pt-[clamp(72px,9vh,120px)] px-0 pb-0">
+              <div className="max-w-[720px]">
+                <div className="text-[14px] font-bold uppercase tracking-[0.14em] text-[#EE6A22] mb-4 [text-shadow:0_2px_20px_rgba(0,0,0,.35)]">
                   Guided Himalayan Treks
                 </div>
-                <h1
-                  className="iy-balance"
-                  style={{
-                    fontFamily: MANROPE,
-                    fontWeight: 800,
-                    color: "#fff",
-                    fontSize: "clamp(30px,4vw,58px)",
-                    lineHeight: 1.05,
-                    letterSpacing: "-.03em",
-                    margin: "0 0 22px",
-                    textShadow: "0 2px 30px rgba(0,0,0,.25)",
-                  }}
-                >
+                <h1 className="text-balance font-[Manrope,sans-serif] font-extrabold text-white text-[clamp(30px,4vw,58px)] leading-[1.05] tracking-[-0.03em] mt-0 mb-[22px] [text-shadow:0_2px_30px_rgba(0,0,0,.25)]">
                   {s.title[0]}
                   <br />
                   {s.title[1]}
                 </h1>
-                <p
-                  className="iy-pretty"
-                  style={{
-                    color: "rgba(255,255,255,.9)",
-                    fontSize: "clamp(14px,1.1vw,16px)",
-                    lineHeight: 1.55,
-                    maxWidth: 540,
-                    margin: "0 0 38px",
-                  }}
-                >
+                <p className="text-pretty text-[rgba(255,255,255,.9)] text-[clamp(14px,1.1vw,16px)] leading-[1.55] max-w-[540px] mt-0 mb-[38px]">
                   {s.sub}
                 </p>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: 14 }}>
+                <div className="flex flex-wrap gap-[14px]">
                   <PrimaryButton href="/destinations">Explore Tours →</PrimaryButton>
                   <GhostButton href="/contact">Plan Your Journey</GhostButton>
                 </div>
               </div>
             </div>
 
-            <div
-              style={{
-                position: "relative",
-                width: "100%",
-                zIndex: 2,
-                padding: "0 0 clamp(24px,4vh,44px)",
-              }}
-            >
-              <div style={{ maxWidth: 1200, margin: "0 auto", filter: "drop-shadow(0 2px 12px rgba(0,0,0,.45))" }}>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    gap: 16,
-                    flexWrap: "wrap",
-                    marginBottom: 8,
-                  }}
-                >
-                  <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                    <span
-                      style={{
-                        width: 7,
-                        height: 7,
-                        borderRadius: "50%",
-                        background: "#EE6A22",
-                        boxShadow: "0 0 0 4px rgba(238,106,34,.18)",
-                      }}
-                    />
-                    <span style={{ fontFamily: MANROPE, fontWeight: 700, fontSize: 14, letterSpacing: ".02em", color: "#fff" }}>
+            <div className="relative w-full z-[2] pt-0 px-0 pb-[clamp(24px,4vh,44px)]">
+              <div className="max-w-[1200px] mx-auto my-0 [filter:drop-shadow(0_2px_12px_rgba(0,0,0,.45))]">
+                <div className="flex items-center justify-between gap-4 flex-wrap mb-2">
+                  <div className="flex items-center gap-3">
+                    <span className="w-[7px] h-[7px] rounded-full bg-[#EE6A22] shadow-[0_0_0_4px_rgba(238,106,34,.18)]" />
+                    <span className="font-[Manrope,sans-serif] font-bold text-[14px] tracking-[0.02em] text-white">
                       {s.routeLabel}
                     </span>
                   </div>
-                  <div style={{ fontFamily: MONO, fontSize: "11.5px", letterSpacing: ".08em", color: "rgba(255,255,255,.5)" }}>
+                  <div className="font-[ui-monospace,SFMono-Regular,Menlo,monospace] text-[11.5px] tracking-[0.08em] text-[rgba(255,255,255,.5)]">
                     {s.routeMeta}
                   </div>
                 </div>
@@ -168,17 +89,7 @@ export function Hero() {
       })}
 
       {/* slide indicators */}
-      <div
-        style={{
-          position: "absolute",
-          left: "50%",
-          bottom: 14,
-          transform: "translateX(-50%)",
-          zIndex: 6,
-          display: "flex",
-          gap: 9,
-        }}
-      >
+      <div className="absolute left-1/2 bottom-[14px] -translate-x-1/2 z-[6] flex gap-[9px]">
         {slides.map((_, i) => {
           const on = i === cur;
           return (
@@ -186,17 +97,9 @@ export function Hero() {
               key={i}
               aria-label={`Go to slide ${i + 1}`}
               onClick={() => setCur(i)}
-              style={{
-                width: on ? 26 : 9,
-                height: 9,
-                padding: 0,
-                border: "none",
-                borderRadius: on ? 100 : "50%",
-                cursor: "pointer",
-                background: on ? "#EE6A22" : "rgba(255,255,255,.4)",
-                boxShadow: "0 1px 4px rgba(0,0,0,.4)",
-                transition: "width .3s ease, background .3s ease",
-              }}
+              className={`h-[9px] p-0 border-none cursor-pointer shadow-[0_1px_4px_rgba(0,0,0,.4)] [transition:width_.3s_ease,background_.3s_ease] ${
+                on ? "w-[26px] rounded-[100px] bg-[#EE6A22]" : "w-[9px] rounded-full bg-[rgba(255,255,255,.4)]"
+              }`}
             />
           );
         })}

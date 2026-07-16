@@ -3,7 +3,20 @@
 import { useState } from "react";
 import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
-import { eyebrow, h2Base, INK, MANROPE, MUTED, ORANGE } from "../components/theme";
+
+/** Small uppercase section eyebrow (matches `eyebrow` in theme.ts + a 12px gap). */
+const EYEBROW =
+  "mb-3 text-[14px] font-bold uppercase tracking-[0.14em] text-[#EE6A22]";
+
+/** Big Manrope section heading (matches `h2Base` in theme.ts; add font size + gap). */
+const HEADING =
+  "mt-0 font-[Manrope,sans-serif] font-extrabold leading-[1.05] tracking-[-0.03em]";
+
+/** Shared form field wrapper / label / control styles. */
+const FIELD = "flex flex-col gap-1.5";
+const LABEL = "text-[13px] font-semibold text-[#1C1C1E]";
+const INPUT =
+  "rounded-[10px] border border-[#d2d2d7] px-4 py-3 text-[15px] [font-family:inherit] [outline:none]";
 
 const FAQS = [
   {
@@ -50,95 +63,65 @@ export default function ContactPage() {
       />
 
       {/* Main Split Content */}
-      <section style={{ padding: "80px clamp(20px,5vw,64px) 60px" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1.1fr 1.3fr", gap: 50, alignItems: "start" }}>
-            
+      <section className="px-[clamp(20px,5vw,64px)] pt-20 pb-[60px]">
+        <div className="mx-auto max-w-[1200px]">
+          <div className="grid grid-cols-[1.1fr_1.3fr] items-start gap-[50px]">
+
             {/* Left Column: Info & Map */}
             <div>
-              <Reveal style={{ marginBottom: 36 }}>
-                <div style={{ ...eyebrow, marginBottom: 12 }}>Kathmandu Office</div>
-                <h2 style={{ ...h2Base, fontSize: "clamp(28px, 4vw, 42px)", marginBottom: 18 }}>We are here for you</h2>
-                <p style={{ color: MUTED, fontSize: 16, lineHeight: 1.6, margin: 0 }}>
+              <Reveal className="mb-9">
+                <div className={EYEBROW}>Kathmandu Office</div>
+                <h2 className={`${HEADING} text-[clamp(28px,4vw,42px)] mb-[18px]`}>We are here for you</h2>
+                <p className="m-0 text-[16px] leading-[1.6] text-[#6E6E73]">
                   Feel free to visit our operations headquarters in Thamel, call us directly, or send us a message through the form.
                 </p>
               </Reveal>
 
-              <Reveal style={{ display: "flex", flexDirection: "column", gap: 20, marginBottom: 40 }}>
-                <div style={{ display: "flex", gap: 16 }}>
-                  <span style={{ color: ORANGE, fontSize: 20, fontWeight: 700 }}>📍</span>
+              <Reveal className="flex flex-col gap-5 mb-10">
+                <div className="flex gap-4">
+                  <span className="text-[20px] font-bold text-[#EE6A22]">📍</span>
                   <div>
-                    <div style={{ fontWeight: 700, fontSize: 16, color: "#1C1C1E" }}>Address</div>
-                    <div style={{ color: MUTED, fontSize: 15, marginTop: 4 }}>Thamel, Ward 26, Kathmandu, Nepal</div>
+                    <div className="font-bold text-[16px] text-[#1C1C1E]">Address</div>
+                    <div className="mt-1 text-[15px] text-[#6E6E73]">Thamel, Ward 26, Kathmandu, Nepal</div>
                   </div>
                 </div>
 
-                <div style={{ display: "flex", gap: 16 }}>
-                  <span style={{ color: ORANGE, fontSize: 20, fontWeight: 700 }}>📞</span>
+                <div className="flex gap-4">
+                  <span className="text-[20px] font-bold text-[#EE6A22]">📞</span>
                   <div>
-                    <div style={{ fontWeight: 700, fontSize: 16, color: "#1C1C1E" }}>Phone Numbers</div>
-                    <div style={{ color: MUTED, fontSize: 15, marginTop: 4 }}>+977 1 4700812 &nbsp;|&nbsp; +977 98510 23412</div>
+                    <div className="font-bold text-[16px] text-[#1C1C1E]">Phone Numbers</div>
+                    <div className="mt-1 text-[15px] text-[#6E6E73]">+977 1 4700812 &nbsp;|&nbsp; +977 98510 23412</div>
                   </div>
                 </div>
 
-                <div style={{ display: "flex", gap: 16 }}>
-                  <span style={{ color: ORANGE, fontSize: 20, fontWeight: 700 }}>✉</span>
+                <div className="flex gap-4">
+                  <span className="text-[20px] font-bold text-[#EE6A22]">✉</span>
                   <div>
-                    <div style={{ fontWeight: 700, fontSize: 16, color: "#1C1C1E" }}>Email Enquiries</div>
-                    <div style={{ color: MUTED, fontSize: 15, marginTop: 4 }}>info@ironyak.com &nbsp;|&nbsp; bookings@ironyak.com</div>
+                    <div className="font-bold text-[16px] text-[#1C1C1E]">Email Enquiries</div>
+                    <div className="mt-1 text-[15px] text-[#6E6E73]">info@ironyak.com &nbsp;|&nbsp; bookings@ironyak.com</div>
                   </div>
                 </div>
               </Reveal>
 
               {/* Map Placeholder */}
               <Reveal>
-                <div
-                  style={{
-                    background: INK,
-                    borderRadius: 24,
-                    height: 260,
-                    position: "relative",
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-between",
-                    padding: 24,
-                    color: "#fff",
-                    boxShadow: "0 12px 30px rgba(0,0,0,.08)",
-                    overflow: "hidden",
-                  }}
-                >
+                <div className="relative flex h-[260px] flex-col justify-between overflow-hidden rounded-3xl bg-[#1C1C1E] p-6 text-white shadow-[0_12px_30px_rgba(0,0,0,0.08)]">
                   {/* Grid Lines Overlay */}
-                  <div
-                    style={{
-                      position: "absolute",
-                      inset: 0,
-                      backgroundImage: "linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)",
-                      backgroundSize: "20px 20px",
-                    }}
-                  />
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", zIndex: 2 }}>
-                    <div style={{ fontFamily: MANROPE, fontWeight: 800, fontSize: 15 }}>KATHMANDU HQ</div>
-                    <div style={{ fontSize: 11, fontFamily: "ui-monospace,monospace", color: "rgba(255,255,255,.4)" }}>27.7172° N · 85.3150° E</div>
-                  </div>
-                  
-                  {/* Styled pin center */}
-                  <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", textAlign: "center", zIndex: 2 }}>
-                    <div style={{
-                      width: 24,
-                      height: 24,
-                      borderRadius: "50%",
-                      background: "rgba(238,106,34,.25)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      animation: "iy-zoom 2s infinite ease-out"
-                    }}>
-                      <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#EE6A22" }} />
-                    </div>
-                    <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", display: "block", marginTop: 8, color: "#EE6A22" }}>IRON YAK</span>
+                  <div className="absolute inset-0 bg-[length:20px_20px] bg-[linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px)]" />
+                  <div className="flex justify-between items-center z-[2]">
+                    <div className="font-[Manrope,sans-serif] font-extrabold text-[15px]">KATHMANDU HQ</div>
+                    <div className="text-[11px] font-[ui-monospace,monospace] text-[rgba(255,255,255,0.4)]">27.7172° N · 85.3150° E</div>
                   </div>
 
-                  <div style={{ zIndex: 2, fontSize: 12, color: "rgba(255,255,255,.5)", display: "flex", justifyContent: "space-between" }}>
+                  {/* Styled pin center */}
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-[2]">
+                    <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[rgba(238,106,34,0.25)] animate-[iy-zoom_2s_infinite_ease-out]">
+                      <div className="h-[10px] w-[10px] rounded-full bg-[#EE6A22]" />
+                    </div>
+                    <span className="block mt-2 text-[11px] font-bold tracking-[0.1em] text-[#EE6A22]">IRON YAK</span>
+                  </div>
+
+                  <div className="z-[2] flex justify-between text-[12px] text-[rgba(255,255,255,0.5)]">
                     <span>ZOOM: 14.5x</span>
                     <span>ACTIVE TRACKING</span>
                   </div>
@@ -147,88 +130,57 @@ export default function ContactPage() {
             </div>
 
             {/* Right Column: Contact/Booking Form */}
-            <Reveal
-              style={{
-                background: "#fff",
-                border: "1px solid #eee",
-                borderRadius: 24,
-                padding: "40px clamp(24px, 4.5vw, 44px)",
-                boxShadow: "0 14px 44px rgba(28,28,30,.04)",
-              }}
-            >
+            <Reveal className="rounded-3xl border border-[#eee] bg-white py-10 px-[clamp(24px,4.5vw,44px)] shadow-[0_14px_44px_rgba(28,28,30,0.04)]">
               {submitted ? (
-                <div style={{ textAlign: "center", padding: "40px 0" }}>
-                  <div style={{ fontSize: 48, marginBottom: 16 }}>🏔️</div>
-                  <h3 style={{ fontFamily: MANROPE, fontSize: 24, fontWeight: 800, margin: "0 0 12px", color: "#1C1C1E" }}>
+                <div className="text-center py-10">
+                  <div className="mb-4 text-[48px]">🏔️</div>
+                  <h3 className="mt-0 mb-3 font-[Manrope,sans-serif] text-[24px] font-extrabold text-[#1C1C1E]">
                     Journey Request Received!
                   </h3>
-                  <p style={{ color: MUTED, fontSize: 15, lineHeight: 1.6, margin: 0 }}>
+                  <p className="my-0 text-[15px] leading-[1.6] text-[#6E6E73]">
                     Thank you for reaching out. A Himalayan operations planner will review your enquiry and contact you within 24 business hours.
                   </p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-                  <h3 style={{ fontFamily: MANROPE, fontSize: 22, fontWeight: 800, margin: "0 0 4px", color: "#1C1C1E" }}>
+                <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+                  <h3 className="mt-0 mb-1 font-[Manrope,sans-serif] text-[22px] font-extrabold text-[#1C1C1E]">
                     Plan Your Itinerary
                   </h3>
-                  <p style={{ color: MUTED, fontSize: 14, margin: "0 0 10px" }}>
+                  <p className="mt-0 mb-[10px] text-[14px] text-[#6E6E73]">
                     Provide your trip preferences and we will prepare a complete proposal.
                   </p>
 
-                  <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                    <label style={{ fontSize: 13, fontWeight: 600, color: "#1C1C1E" }}>Full Name</label>
+                  <div className={FIELD}>
+                    <label className={LABEL}>Full Name</label>
                     <input
                       type="text"
                       required
                       placeholder="e.g. Sarah Jenkins"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      style={{
-                        padding: "12px 16px",
-                        borderRadius: 10,
-                        border: "1px solid #d2d2d7",
-                        fontSize: 15,
-                        outline: "none",
-                        fontFamily: "inherit",
-                        transition: "border-color .2s ease",
-                      }}
+                      className={`${INPUT} [transition:border-color_0.2s_ease]`}
                     />
                   </div>
 
-                  <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                    <label style={{ fontSize: 13, fontWeight: 600, color: "#1C1C1E" }}>Email Address</label>
+                  <div className={FIELD}>
+                    <label className={LABEL}>Email Address</label>
                     <input
                       type="email"
                       required
                       placeholder="e.g. sarah@example.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      style={{
-                        padding: "12px 16px",
-                        borderRadius: 10,
-                        border: "1px solid #d2d2d7",
-                        fontSize: 15,
-                        outline: "none",
-                        fontFamily: "inherit",
-                      }}
+                      className={INPUT}
                     />
                   </div>
 
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
-                    <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                      <label style={{ fontSize: 13, fontWeight: 600, color: "#1C1C1E" }}>Destination</label>
+                  <div className="grid grid-cols-[1fr_1fr] gap-4">
+                    <div className={FIELD}>
+                      <label className={LABEL}>Destination</label>
                       <select
                         value={formData.destination}
                         onChange={(e) => setFormData({ ...formData, destination: e.target.value })}
-                        style={{
-                          padding: "12px 16px",
-                          borderRadius: 10,
-                          border: "1px solid #d2d2d7",
-                          fontSize: 15,
-                          outline: "none",
-                          fontFamily: "inherit",
-                          background: "#fff",
-                        }}
+                        className={`${INPUT} bg-white`}
                       >
                         <option>Everest Base Camp</option>
                         <option>Annapurna Circuit</option>
@@ -239,59 +191,32 @@ export default function ContactPage() {
                       </select>
                     </div>
 
-                    <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                      <label style={{ fontSize: 13, fontWeight: 600, color: "#1C1C1E" }}>Target Date</label>
+                    <div className={FIELD}>
+                      <label className={LABEL}>Target Date</label>
                       <input
                         type="date"
                         required
                         value={formData.date}
                         onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                        style={{
-                          padding: "12px 16px",
-                          borderRadius: 10,
-                          border: "1px solid #d2d2d7",
-                          fontSize: 15,
-                          outline: "none",
-                          fontFamily: "inherit",
-                        }}
+                        className={INPUT}
                       />
                     </div>
                   </div>
 
-                  <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                    <label style={{ fontSize: 13, fontWeight: 600, color: "#1C1C1E" }}>Message / Specific Requirements</label>
+                  <div className={FIELD}>
+                    <label className={LABEL}>Message / Specific Requirements</label>
                     <textarea
                       rows={4}
                       placeholder="Tell us about your fitness levels, timeline, group preferences..."
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      style={{
-                        padding: "12px 16px",
-                        borderRadius: 10,
-                        border: "1px solid #d2d2d7",
-                        fontSize: 15,
-                        outline: "none",
-                        fontFamily: "inherit",
-                        resize: "vertical",
-                      }}
+                      className={`${INPUT} resize-y`}
                     />
                   </div>
 
                   <button
                     type="submit"
-                    style={{
-                      background: "#EE6A22",
-                      color: "#fff",
-                      border: "none",
-                      padding: "16px",
-                      borderRadius: 100,
-                      fontWeight: 600,
-                      fontSize: 16,
-                      cursor: "pointer",
-                      boxShadow: "0 10px 24px rgba(238,106,34,.35)",
-                      marginTop: 10,
-                      transition: "transform .2s ease, box-shadow .2s ease",
-                    }}
+                    className="mt-[10px] cursor-pointer rounded-[100px] border-none bg-[#EE6A22] p-4 text-[16px] font-semibold text-black shadow-[0_10px_24px_rgba(238,106,34,0.35)] [transition:transform_0.2s_ease,box-shadow_0.2s_ease,color_0.2s_ease] hover:text-white"
                     onMouseEnter={(e) => {
                       (e.target as HTMLButtonElement).style.transform = "translateY(-2px)";
                       (e.target as HTMLButtonElement).style.boxShadow = "0 14px 30px rgba(238,106,34,.45)";
@@ -312,51 +237,33 @@ export default function ContactPage() {
       </section>
 
       {/* FAQ Section */}
-      <section style={{ padding: "60px clamp(20px,5vw,64px) 100px", background: "#FAF9F6" }}>
-        <div style={{ maxWidth: 800, margin: "0 auto" }}>
-          <Reveal style={{ textAlign: "center", marginBottom: 44 }}>
-            <div style={{ ...eyebrow, marginBottom: 12 }}>FAQ</div>
-            <h2 style={{ ...h2Base, fontSize: "clamp(28px, 3.8vw, 42px)", marginBottom: 16 }}>Frequently Asked Questions</h2>
-            <p style={{ color: MUTED, fontSize: 16, margin: 0 }}>
+      <section className="px-[clamp(20px,5vw,64px)] pt-[60px] pb-[100px] bg-[#FAF9F6]">
+        <div className="mx-auto max-w-[800px]">
+          <Reveal className="text-center mb-11">
+            <div className={EYEBROW}>FAQ</div>
+            <h2 className={`${HEADING} text-[clamp(28px,3.8vw,42px)] mb-4`}>Frequently Asked Questions</h2>
+            <p className="my-0 text-[16px] text-[#6E6E73]">
               Quick answers to planning details, altitude safety, and bookings.
             </p>
           </Reveal>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+          <div className="flex flex-col gap-[14px]">
             {FAQS.map((faq, idx) => {
               const isOpen = activeFaq === idx;
               return (
                 <Reveal key={idx}>
-                  <div
-                    style={{
-                      background: "#fff",
-                      borderRadius: 16,
-                      border: "1px solid #eee",
-                      overflow: "hidden",
-                      transition: "all .3s ease",
-                    }}
-                  >
+                  <div className="overflow-hidden rounded-2xl border border-[#eee] bg-white [transition:all_0.3s_ease]">
                     <button
                       onClick={() => setActiveFaq(isOpen ? null : idx)}
-                      style={{
-                        width: "100%",
-                        padding: "22px 24px",
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        border: "none",
-                        background: "transparent",
-                        cursor: "pointer",
-                        textAlign: "left",
-                      }}
+                      className="flex w-full items-center justify-between border-none bg-transparent px-6 py-[22px] text-left cursor-pointer"
                     >
-                      <span style={{ fontFamily: MANROPE, fontWeight: 700, fontSize: 17, color: "#1C1C1E", paddingRight: 20 }}>
+                      <span className="font-[Manrope,sans-serif] font-bold text-[17px] text-[#1C1C1E] pr-5">
                         {faq.q}
                       </span>
-                      <span style={{ fontSize: 18, color: isOpen ? "#EE6A22" : MUTED, fontWeight: 600 }}>{isOpen ? "−" : "+"}</span>
+                      <span className={`text-[18px] font-semibold ${isOpen ? "text-[#EE6A22]" : "text-[#6E6E73]"}`}>{isOpen ? "−" : "+"}</span>
                     </button>
                     {isOpen && (
-                      <div style={{ padding: "0 24px 22px 24px", color: MUTED, fontSize: 15, lineHeight: 1.6, borderTop: "1px solid #f9f9f9" }}>
+                      <div className="pt-0 px-6 pb-[22px] text-[15px] leading-[1.6] text-[#6E6E73] border-t border-[#f9f9f9]">
                         {faq.a}
                       </div>
                     )}

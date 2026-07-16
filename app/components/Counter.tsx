@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { MANROPE, ORANGE } from "./theme";
 
 /** Counts up from 0 to `target` (with an eased curve) once scrolled into view. */
 export function Counter({ target, suffix = "" }: { target: number; suffix?: string }) {
@@ -48,13 +47,7 @@ export function Counter({ target, suffix = "" }: { target: number; suffix?: stri
   return (
     <div
       ref={ref}
-      style={{
-        fontFamily: MANROPE,
-        fontWeight: 800,
-        fontSize: "clamp(40px,5vw,60px)",
-        color: ORANGE,
-        letterSpacing: "-.03em",
-      }}
+      className="font-[Manrope,sans-serif] text-[clamp(40px,5vw,60px)] font-extrabold tracking-[-.03em] text-[#EE6A22]"
     >
       {val.toLocaleString() + suffix}
     </div>

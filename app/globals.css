@@ -1,7 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap');
-@import "tailwindcss";
 
-/* ---- Iron Yak Homepage (imported from Claude Design) ---- */
+/* Tailwind utilities only — preflight is intentionally omitted so the base
+   reset does not alter pages that rely on browser-default margins. Component
+   styling now lives in Tailwind utility classes; only the few rules that can't
+   be expressed as utilities remain below (base reset, keyframes, the SMIL route
+   marker, and the scroll-reveal mechanism used by the <Reveal> component). */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+/* ---- Iron Yak base ---- */
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body { margin: 0; }
@@ -11,11 +19,7 @@ a:hover { color: #EE6A22; }
 
 #iy-root { -webkit-font-smoothing: antialiased; }
 
-/* text balancing helpers (kept as classes to stay TS-friendly) */
-.iy-balance { text-wrap: balance; }
-.iy-pretty { text-wrap: pretty; }
-
-/* hero animations */
+/* keyframes (referenced from Tailwind `animate-[...]` utilities and the route marker) */
 @keyframes iy-zoom { from { transform: scale(1); } to { transform: scale(1.14); } }
 @keyframes iy-travel { from { offset-distance: 0%; } to { offset-distance: 100%; } }
 
@@ -23,75 +27,18 @@ a:hover { color: #EE6A22; }
    wingbeat + bob are driven by SMIL <animateTransform> inside the SVG. */
 .iy-marker { offset-rotate: auto; offset-distance: 0%; filter: drop-shadow(0 1px 2px rgba(0,0,0,.55)); }
 .iy-marker.iy-run { animation: iy-travel var(--iy-dur, 7s) linear forwards; }
-.iy-slide { will-change: opacity; }
 
 /* scroll reveal (driven by the <Reveal> component) */
 .iy-reveal { opacity: 0; transform: translateY(34px); transition: opacity .9s cubic-bezier(.16,.84,.44,1), transform .9s cubic-bezier(.16,.84,.44,1); }
 .iy-in { opacity: 1 !important; transform: none !important; }
 
-/* hidden scrollbar for the testimonial track */
-.iy-nolist::-webkit-scrollbar { display: none; }
-.iy-nolist { scrollbar-width: none; }
-
-/* destination card (hover: lift + zoom the photo) */
-.iy-card {
-  position: relative;
-  display: block;
-  border-radius: 22px;
-  overflow: hidden;
-  aspect-ratio: 4 / 5;
-  box-shadow: 0 12px 30px rgba(28,28,30,.1);
-  transition: transform .5s cubic-bezier(.16,.84,.44,1), box-shadow .5s ease;
-}
-.iy-card:hover { transform: translateY(-8px); box-shadow: 0 26px 54px rgba(28,28,30,.2); }
-.iy-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .8s cubic-bezier(.16,.84,.44,1); }
-.iy-card:hover img { transform: scale(1.08); }
-.iy-card-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 42%, rgba(0,0,0,.78) 100%); }
-
-/* feature card (hover: subtle lift) */
-.iy-feat {
-  background: #fff;
-  border-radius: 20px;
-  padding: 32px;
-  box-shadow: 0 8px 24px rgba(28,28,30,.05);
-  transition: transform .4s ease, box-shadow .4s ease;
-}
-.iy-feat:hover { transform: translateY(-6px); box-shadow: 0 20px 44px rgba(28,28,30,.1); }
-
-/* "Why Iron Yak" grid: feature cards + stats sharing one grid so the stats
-   fill the empty space beside the last two cards (two up, two down). */
-.iy-why-grid {
-  display: grid;
-  gap: 18px;
-  grid-template-columns: 1fr;
-}
-/* stats: 2×2 block (two up, two down) */
-.iy-why-grid .iy-stats {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  align-content: center;
-  gap: 24px 20px;
-}
-@media (min-width: 640px) {
-  .iy-why-grid { grid-template-columns: repeat(2, 1fr); }
-}
+/* "Why Iron Yak" grid — equal-width feature cards with the stats block spanning
+   the last two columns. Kept as a scoped rule (not Tailwind utilities) because a
+   grid with a column-spanning child needs `minmax(0,1fr)` columns, which the
+   arbitrary Tailwind grid utility did not apply reliably under Turbopack. */
+.iy-why-grid { display: grid; gap: 18px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 640px) { .iy-why-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (min-width: 1000px) {
-  .iy-why-grid { grid-template-columns: repeat(4, 1fr); }
-  /* sit beside the last two cards, spanning both right-hand columns and
-     fitting within a single card's height */
-  .iy-why-grid .iy-stats { grid-column: 3 / span 2; }
+  .iy-why-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .iy-why-grid > .iy-stats { grid-column: 3 / span 2; }
 }
-
-/* footer social icons */
-.iy-social {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: rgba(255,255,255,.08);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  transition: background .2s ease;
-}
-.iy-social:hover { background: #EE6A22; color: #fff; }

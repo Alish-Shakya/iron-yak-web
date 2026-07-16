@@ -1,43 +1,25 @@
-import { h2Base } from "./theme";
 import { Reveal } from "./Reveal";
 import { PrimaryButton } from "./buttons";
 
 /** Full-bleed closing call-to-action over a sunset photo. */
 export function FinalCta() {
   return (
-    <section style={{ padding: "0 clamp(20px,5vw,64px) clamp(60px,8vw,110px)" }}>
-      <Reveal
-        style={{
-          position: "relative",
-          maxWidth: 1300,
-          margin: "0 auto",
-          borderRadius: 28,
-          overflow: "hidden",
-          minHeight: 460,
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
+    <section className="pt-0 px-[clamp(20px,5vw,64px)] pb-[clamp(60px,8vw,110px)]">
+      <Reveal className="relative mx-auto my-0 flex min-h-[460px] max-w-[1300px] items-center overflow-hidden rounded-[28px]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=2000&q=80"
           alt="Sunset over the Himalaya"
           loading="lazy"
           decoding="async"
-          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+          className="absolute inset-0 h-full w-full object-cover"
         />
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background: "linear-gradient(90deg, rgba(28,28,30,.78) 0%, rgba(28,28,30,.4) 60%, rgba(28,28,30,.2) 100%)",
-          }}
-        />
-        <div style={{ position: "relative", zIndex: 2, padding: "clamp(40px,6vw,80px)", color: "#fff", maxWidth: 640 }}>
-          <h2 className="iy-balance" style={{ ...h2Base, fontSize: "clamp(34px,5vw,62px)", lineHeight: 1.04, margin: "0 0 20px" }}>
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(28,28,30,.78)_0%,rgba(28,28,30,.4)_60%,rgba(28,28,30,.2)_100%)]" />
+        <div className="relative z-[2] max-w-[640px] p-[clamp(40px,6vw,80px)] text-white">
+          <h2 className="text-balance mt-0 mb-[20px] font-[Manrope,sans-serif] text-[clamp(34px,5vw,62px)] font-extrabold leading-[1.04] tracking-[-0.03em]">
             Your Himalayan adventure starts here
           </h2>
-          <p style={{ color: "rgba(255,255,255,.86)", fontSize: 18, lineHeight: 1.6, margin: "0 0 34px", maxWidth: 480 }}>
+          <p className="mt-0 mb-[34px] max-w-[480px] text-[18px] leading-[1.6] text-[rgba(255,255,255,0.86)]">
             Tell us where you dream of going. We&apos;ll craft the route, handle the details, and walk it with you.
           </p>
           <PrimaryButton

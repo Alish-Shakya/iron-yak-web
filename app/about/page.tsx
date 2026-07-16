@@ -2,7 +2,17 @@ import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
 import { Counter } from "../components/Counter";
 import { stats } from "../data/site";
-import { eyebrow, h2Base, MANROPE, MUTED, ORANGE } from "../components/theme";
+
+/** Small uppercase section eyebrow (matches `eyebrow` in theme.ts + a 12px gap). */
+const EYEBROW =
+  "mb-3 text-[14px] font-bold uppercase tracking-[0.14em] text-[#EE6A22]";
+
+/** Big Manrope section heading (matches `h2Base` in theme.ts + shared font size). */
+const HEADING =
+  "mt-0 font-[Manrope,sans-serif] text-[clamp(28px,4vw,44px)] font-extrabold leading-[1.05] tracking-[-0.03em]";
+
+/** Centered muted intro paragraph under a section heading. */
+const SECTION_INTRO = "mx-auto my-0 max-w-[520px] text-[16px] text-[#6E6E73]";
 
 const VALUES = [
   {
@@ -54,27 +64,33 @@ export default function AboutPage() {
       />
 
       {/* Story Split Section */}
-      <section style={{ padding: "80px clamp(20px,5vw,64px) 50px" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 50, alignItems: "center" }}>
+      <section className="px-[clamp(20px,5vw,64px)] pt-20 pb-[50px]">
+        <div className="mx-auto max-w-[1200px]">
+          <div className="grid grid-cols-[1fr_1fr] items-center gap-[50px]">
             <Reveal>
-              <div style={{ ...eyebrow, marginBottom: 12 }}>Our Heritage</div>
-              <h2 style={{ ...h2Base, fontSize: "clamp(28px, 4vw, 44px)", marginBottom: 20 }}>
+              <div className={EYEBROW}>Our Heritage</div>
+              <h2 className={`${HEADING} mb-5`}>
                 Born in Kathmandu, raised in the high peaks
               </h2>
-              <p style={{ color: MUTED, fontSize: 16, lineHeight: 1.65, marginBottom: 16 }}>
-                Iron Yak was founded in 2011 by a group of passionate Sherpa guides and travel planners who wanted to establish a new standard for Himalayan adventure.
+              <p className="mb-4 text-[16px] leading-[1.65] text-[#6E6E73]">
+                Iron Yak was founded in 2011 by a group of passionate Sherpa
+                guides and travel planners who wanted to establish a new
+                standard for Himalayan adventure.
               </p>
-              <p style={{ color: MUTED, fontSize: 16, lineHeight: 1.65, marginBottom: 0 }}>
-                We believe that trekking should be a journey of connection — to the dramatic topography, to the ancient villages, and to the warm, authentic hospitality of the mountain people. We don&apos;t just lead tours; we curate highly personalized, safe, and deeply respectful explorations.
+              <p className="mb-0 text-[16px] leading-[1.65] text-[#6E6E73]">
+                We believe that trekking should be a journey of connection — to
+                the dramatic topography, to the ancient villages, and to the
+                warm, authentic hospitality of the mountain people. We
+                don&apos;t just lead tours; we curate highly personalized, safe,
+                and deeply respectful explorations.
               </p>
             </Reveal>
-            <Reveal style={{ position: "relative", borderRadius: 24, overflow: "hidden", aspectRatio: "4 / 3", boxShadow: "0 10px 30px rgba(0,0,0,0.08)" }}>
+            <Reveal className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-[0_10px_30px_rgba(0,0,0,0.08)]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80"
                 alt="Trekking team with mountain view"
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                className="h-full w-full object-cover"
               />
             </Reveal>
           </div>
@@ -82,20 +98,15 @@ export default function AboutPage() {
       </section>
 
       {/* Stats Counter Band */}
-      <section style={{ padding: "40px clamp(20px,5vw,64px)", background: "#FAF9F6" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <Reveal
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit,minmax(150px,1fr))",
-              gap: 20,
-              textAlign: "center",
-            }}
-          >
+      <section className="bg-[#FAF9F6] px-[clamp(20px,5vw,64px)] py-10">
+        <div className="mx-auto max-w-[1200px]">
+          <Reveal className="grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-5 text-center">
             {stats.map((s) => (
               <div key={s.label}>
                 <Counter target={s.target} suffix={s.suffix} />
-                <div style={{ color: MUTED, fontSize: 15, fontWeight: 500, marginTop: 4 }}>{s.label}</div>
+                <div className="mt-1 text-[15px] font-medium text-[#6E6E73]">
+                  {s.label}
+                </div>
               </div>
             ))}
           </Reveal>
@@ -103,47 +114,34 @@ export default function AboutPage() {
       </section>
 
       {/* Core Values Section */}
-      <section style={{ padding: "80px clamp(20px,5vw,64px) 50px" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <Reveal style={{ textAlign: "center", marginBottom: 50 }}>
-            <div style={{ ...eyebrow, marginBottom: 12 }}>Our Principles</div>
-            <h2 style={{ ...h2Base, fontSize: "clamp(28px, 4vw, 44px)", marginBottom: 16 }}>The values that guide our steps</h2>
-            <p style={{ color: MUTED, fontSize: 16, maxWidth: 520, margin: "0 auto" }}>
-              Every trek we organize is designed with responsibility, local empowerment, and absolute safety at its core.
+      <section className="px-[clamp(20px,5vw,64px)] pt-20 pb-[50px]">
+        <div className="mx-auto max-w-[1200px]">
+          <Reveal className="mb-[50px] text-center">
+            <div className={EYEBROW}>Our Principles</div>
+            <h2 className={`${HEADING} mb-4`}>
+              The values that guide our steps
+            </h2>
+            <p className={SECTION_INTRO}>
+              Every trek we organize is designed with responsibility, local
+              empowerment, and absolute safety at its core.
             </p>
           </Reveal>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 24 }}>
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-6">
             {VALUES.map((val, idx) => (
               <Reveal
                 key={idx}
-                style={{
-                  background: "#fff",
-                  border: "1px solid #eee",
-                  borderRadius: 20,
-                  padding: 36,
-                  boxShadow: "0 8px 24px rgba(28,28,30,.03)",
-                  transition: "transform .3s ease",
-                }}
+                className="rounded-[20px] border border-[#eee] bg-white p-9 shadow-[0_8px_24px_rgba(28,28,30,0.03)] [transition:transform_0.3s_ease]!"
               >
-                <div
-                  style={{
-                    width: 52,
-                    height: 52,
-                    borderRadius: 14,
-                    background: "rgba(238,106,34,.1)",
-                    color: ORANGE,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: 24,
-                    marginBottom: 20,
-                  }}
-                >
+                <div className="mb-5 flex h-[52px] w-[52px] items-center justify-center rounded-[14px] bg-[rgba(238,106,34,0.1)] text-[24px] text-[#EE6A22]">
                   {val.icon}
                 </div>
-                <h3 style={{ fontFamily: MANROPE, fontSize: 19, fontWeight: 700, margin: "0 0 10px", color: "#1C1C1E" }}>{val.title}</h3>
-                <p style={{ color: MUTED, fontSize: 15, lineHeight: 1.6, margin: 0 }}>{val.desc}</p>
+                <h3 className="mt-0 mb-2.5 font-[Manrope,sans-serif] text-[19px] font-bold text-[#1C1C1E]">
+                  {val.title}
+                </h3>
+                <p className="my-0 text-[15px] leading-[1.6] text-[#6E6E73]">
+                  {val.desc}
+                </p>
               </Reveal>
             ))}
           </div>
@@ -151,38 +149,41 @@ export default function AboutPage() {
       </section>
 
       {/* Team Section */}
-      <section style={{ padding: "50px clamp(20px,5vw,64px) 100px" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <Reveal style={{ textAlign: "center", marginBottom: 50 }}>
-            <div style={{ ...eyebrow, marginBottom: 12 }}>Our Team</div>
-            <h2 style={{ ...h2Base, fontSize: "clamp(28px, 4vw, 44px)", marginBottom: 16 }}>Led by Himalayan experts</h2>
-            <p style={{ color: MUTED, fontSize: 16, maxWidth: 520, margin: "0 auto" }}>
-              Meet the certified guides and directors who make every high-altitude journey safe and unforgettable.
+      <section className="px-[clamp(20px,5vw,64px)] pt-[50px] pb-[100px]">
+        <div className="mx-auto max-w-[1200px]">
+          <Reveal className="mb-[50px] text-center">
+            <div className={EYEBROW}>Our Team</div>
+            <h2 className={`${HEADING} mb-4`}>Led by Himalayan experts</h2>
+            <p className={SECTION_INTRO}>
+              Meet the certified guides and directors who make every
+              high-altitude journey safe and unforgettable.
             </p>
           </Reveal>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 24 }}>
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-6">
             {TEAM.map((t, idx) => (
               <Reveal
                 key={idx}
-                style={{
-                  background: "#fff",
-                  borderRadius: 20,
-                  overflow: "hidden",
-                  border: "1px solid #eee",
-                  boxShadow: "0 10px 30px rgba(0,0,0,0.03)",
-                }}
+                className="overflow-hidden rounded-[20px] border border-[#eee] bg-white shadow-[0_10px_30px_rgba(0,0,0,0.03)]"
               >
-                <div style={{ height: 280, position: "relative" }}>
+                <div className="relative h-[280px]">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={t.img} alt={t.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                  <img
+                    src={t.img}
+                    alt={t.name}
+                    className="h-full w-full object-cover hover:scale-105"
+                  />
                 </div>
-                <div style={{ padding: 24 }}>
-                  <h3 style={{ fontFamily: MANROPE, fontSize: 19, fontWeight: 700, margin: "0 0 4px", color: "#1C1C1E" }}>{t.name}</h3>
-                  <div style={{ fontSize: 13, textTransform: "uppercase", letterSpacing: "0.05em", color: ORANGE, fontWeight: 600, marginBottom: 12 }}>
+                <div className="p-6">
+                  <h3 className="mt-0 mb-1 font-[Manrope,sans-serif] text-[19px] font-bold text-[#1C1C1E]">
+                    {t.name}
+                  </h3>
+                  <div className="mb-3 text-[13px] font-semibold uppercase tracking-[0.05em] text-[#EE6A22]">
                     {t.role}
                   </div>
-                  <p style={{ color: MUTED, fontSize: 14, lineHeight: 1.6, margin: 0 }}>{t.bio}</p>
+                  <p className="my-0 text-[14px] leading-[1.6] text-[#6E6E73]">
+                    {t.bio}
+                  </p>
                 </div>
               </Reveal>
             ))}

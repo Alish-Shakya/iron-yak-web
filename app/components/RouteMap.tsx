@@ -28,7 +28,7 @@ export function RouteMap({
     <svg
       viewBox="0 0 1000 172"
       width="100%"
-      style={{ display: "block", overflow: "visible" }}
+      className="block overflow-visible"
       fontFamily="'Manrope',sans-serif"
     >
       {/* route line */}

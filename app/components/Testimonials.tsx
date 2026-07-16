@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import { testimonials } from "../data/site";
-import { eyebrow, h2Base, MANROPE } from "./theme";
 import { Reveal } from "./Reveal";
 
 /** Horizontally scroll-snapping traveler reviews with prev/next controls. */
@@ -38,46 +37,28 @@ export function Testimonials() {
   }, []);
 
   return (
-    <section id="stories" style={{ padding: "clamp(60px,8vw,110px) 0" }}>
-      <Reveal
-        style={{
-          maxWidth: 1200,
-          margin: "0 auto",
-          padding: "0 clamp(20px,5vw,64px)",
-          display: "flex",
-          alignItems: "flex-end",
-          justifyContent: "space-between",
-          gap: 24,
-          flexWrap: "wrap",
-          marginBottom: 42,
-        }}
-      >
+    <section id="stories" className="py-[clamp(60px,8vw,110px)]">
+      <Reveal className="mx-auto mt-0 mb-[42px] flex max-w-[1200px] flex-wrap items-end justify-between gap-6 px-[clamp(20px,5vw,64px)] py-0">
         <div>
-          <div style={{ ...eyebrow, marginBottom: 14 }}>Traveler Stories</div>
-          <h2 className="iy-balance" style={{ ...h2Base, fontSize: "clamp(32px,4.4vw,54px)", maxWidth: 560 }}>
+          <div className="mb-[14px] text-[14px] font-bold uppercase tracking-[0.14em] text-[#EE6A22]">Traveler Stories</div>
+          <h2 className="mt-0 max-w-[560px] font-[Manrope,sans-serif] text-[clamp(32px,4.4vw,54px)] font-extrabold leading-[1.05] tracking-[-0.03em] text-balance">
             Loved by adventurers worldwide
           </h2>
         </div>
-        <div style={{ display: "flex", gap: 10 }}>
+        <div className="flex gap-2.5">
           <button
             aria-label="Previous"
             onClick={() => scroll(-1)}
             disabled={atStart}
             onMouseEnter={() => setPrevHover(true)}
             onMouseLeave={() => setPrevHover(false)}
-            style={{
-              width: 52,
-              height: 52,
-              borderRadius: "50%",
-              border: "none",
-              background: atStart ? "#E5E3DF" : "#EE6A22",
-              color: atStart ? "#B4B2AD" : "#fff",
-              fontSize: 20,
-              cursor: atStart ? "not-allowed" : "pointer",
-              boxShadow: atStart ? "none" : "0 8px 20px rgba(238,106,34,.3)",
-              transform: !atStart && prevHover ? "scale(1.06)" : "none",
-              transition: "transform .2s ease, background .2s ease, color .2s ease",
-            }}
+            className={`h-[52px] w-[52px] rounded-full border-none text-[20px] [transition:transform_.2s_ease,background_.2s_ease,color_.2s_ease] ${
+              atStart
+                ? "cursor-not-allowed bg-[#E5E3DF] text-[#B4B2AD] shadow-none [transform:none]"
+                : `cursor-pointer bg-[#EE6A22] ${prevHover ? "text-white" : "text-black"} shadow-[0_8px_20px_rgba(238,106,34,.3)] ${
+                    prevHover ? "[transform:scale(1.06)]" : "[transform:none]"
+                  }`
+            }`}
           >
             ←
           </button>
@@ -87,19 +68,13 @@ export function Testimonials() {
             disabled={atEnd}
             onMouseEnter={() => setNextHover(true)}
             onMouseLeave={() => setNextHover(false)}
-            style={{
-              width: 52,
-              height: 52,
-              borderRadius: "50%",
-              border: "none",
-              background: atEnd ? "#E5E3DF" : "#EE6A22",
-              color: atEnd ? "#B4B2AD" : "#fff",
-              fontSize: 20,
-              cursor: atEnd ? "not-allowed" : "pointer",
-              boxShadow: atEnd ? "none" : "0 8px 20px rgba(238,106,34,.3)",
-              transform: !atEnd && nextHover ? "scale(1.06)" : "none",
-              transition: "transform .2s ease, background .2s ease, color .2s ease",
-            }}
+            className={`h-[52px] w-[52px] rounded-full border-none text-[20px] [transition:transform_.2s_ease,background_.2s_ease,color_.2s_ease] ${
+              atEnd
+                ? "cursor-not-allowed bg-[#E5E3DF] text-[#B4B2AD] shadow-none [transform:none]"
+                : `cursor-pointer bg-[#EE6A22] ${nextHover ? "text-white" : "text-black"} shadow-[0_8px_20px_rgba(238,106,34,.3)] ${
+                    nextHover ? "[transform:scale(1.06)]" : "[transform:none]"
+                  }`
+            }`}
           >
             →
           </button>
@@ -108,45 +83,29 @@ export function Testimonials() {
 
       <div
         ref={track}
-        className="iy-nolist"
-        style={{
-          display: "flex",
-          gap: 22,
-          overflowX: "auto",
-          scrollBehavior: "smooth",
-          padding: "6px clamp(20px,5vw,64px) 20px",
-          scrollSnapType: "x mandatory",
-        }}
+        className="flex snap-x snap-mandatory gap-[22px] overflow-x-auto scroll-smooth px-[clamp(20px,5vw,64px)] pt-[6px] pb-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {testimonials.map((t) => (
           <div
             key={t.name}
-            style={{
-              scrollSnapAlign: "start",
-              flex: "0 0 clamp(300px,38vw,420px)",
-              background: "#fff",
-              border: "1px solid #eee",
-              borderRadius: 22,
-              padding: 34,
-              boxShadow: "0 14px 36px rgba(28,28,30,.07)",
-            }}
+            className="snap-start rounded-[22px] border border-[#eee] bg-white p-[34px] shadow-[0_14px_36px_rgba(28,28,30,.07)] [flex:0_0_clamp(300px,38vw,420px)]"
           >
-            <div style={{ color: "#EE6A22", fontSize: 17, letterSpacing: 2, marginBottom: 16 }}>★★★★★</div>
-            <p style={{ fontSize: 18, lineHeight: 1.6, color: "#2c2c2e", margin: "0 0 26px", fontWeight: 500 }}>
+            <div className="mb-4 text-[17px] tracking-[2px] text-[#EE6A22]">★★★★★</div>
+            <p className="mx-0 mt-0 mb-[26px] text-[18px] font-medium leading-[1.6] text-[#2c2c2e]">
               {t.quote}
             </p>
-            <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+            <div className="flex items-center gap-[14px]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={t.avatar}
                 alt=""
                 loading="lazy"
                 decoding="async"
-                style={{ width: 50, height: 50, borderRadius: "50%", objectFit: "cover" }}
+                className="h-[50px] w-[50px] rounded-full object-cover"
               />
               <div>
-                <div style={{ fontWeight: 700, fontFamily: MANROPE }}>{t.name}</div>
-                <div style={{ color: "#9a9a9e", fontSize: 14 }}>{t.trip}</div>
+                <div className="font-[Manrope,sans-serif] font-bold">{t.name}</div>
+                <div className="text-[14px] text-[#9a9a9e]">{t.trip}</div>
               </div>
             </div>
           </div>

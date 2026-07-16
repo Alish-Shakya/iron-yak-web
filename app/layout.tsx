@@ -16,21 +16,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full antialiased">
-      <body className="min-h-full" style={{ margin: 0 }}>
+      <body className="min-h-full">
         <div
           id="iy-root"
-          style={{
-            fontFamily: "'Inter',sans-serif",
-            color: "#3A3A3C",
-            background: "#ffffff",
-            overflowX: "hidden",
-            display: "flex",
-            flexDirection: "column",
-            minHeight: "100vh",
-          }}
+          className="flex min-h-screen flex-col overflow-x-hidden bg-[#ffffff] font-['Inter',sans-serif] text-[#3A3A3C]"
         >
           <Nav />
-          <main style={{ flex: 1 }}>{children}</main>
+          <main className="flex-1">{children}</main>
           <Footer />
         </div>
       </body>

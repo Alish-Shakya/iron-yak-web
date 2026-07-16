@@ -28,31 +28,29 @@ export function PrimaryButton({
 }: PrimaryProps) {
   const [hover, setHover] = useState(false);
   const isInternal = href.startsWith("/");
+  const { color: customColor, background, ...styleWithoutColor } = style ?? {};
+  const isFilledAction = !background || background === "#EE6A22";
 
+  // Prop- and hover-state-driven values stay inline; static declarations moved to className.
   const buttonStyle: CSSProperties = {
-    display: "inline-flex",
-    alignItems: "center",
-    gap: 10,
-    background: "#EE6A22",
-    color: "#fff",
-    fontWeight: 600,
     fontSize,
     padding,
-    borderRadius: 100,
     boxShadow: hover ? hoverShadow : shadow,
     transform: hover ? `translateY(${lift})` : "none",
-    transition: "transform .25s ease, box-shadow .25s ease",
-    textDecoration: "none",
-    cursor: "pointer",
-    ...style,
+    color: isFilledAction ? (hover ? "#fff" : "#000") : customColor,
+    background,
+    ...styleWithoutColor,
   };
 
+  const className =
+    "inline-flex items-center gap-2.5 bg-[#EE6A22] font-semibold rounded-[100px] no-underline cursor-pointer [transition:transform_.25s_ease,box-shadow_.25s_ease,color_.25s_ease]";
+
   return isInternal ? (
-    <Link href={href} style={buttonStyle} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
+    <Link href={href} className={className} style={buttonStyle} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
       {children}
     </Link>
   ) : (
-    <a href={href} style={buttonStyle} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
+    <a href={href} className={className} style={buttonStyle} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
       {children}
     </a>
   );
@@ -63,31 +61,21 @@ export function GhostButton({ href, children }: { href: string; children: ReactN
   const [hover, setHover] = useState(false);
   const isInternal = href.startsWith("/");
 
+  // Hover-state-driven values stay inline; static declarations moved to className.
   const buttonStyle: CSSProperties = {
-    display: "inline-flex",
-    alignItems: "center",
-    gap: 10,
     background: hover ? "rgba(255,255,255,.24)" : "rgba(255,255,255,.12)",
-    backdropFilter: "blur(10px)",
-    WebkitBackdropFilter: "blur(10px)",
-    border: "1px solid rgba(255,255,255,.4)",
-    color: "#fff",
-    fontWeight: 600,
-    fontSize: 16,
-    padding: "16px 30px",
-    borderRadius: 100,
     transform: hover ? "translateY(-3px)" : "none",
-    transition: "background .25s ease, transform .25s ease",
-    textDecoration: "none",
-    cursor: "pointer",
   };
 
+  const className =
+    "inline-flex items-center gap-2.5 backdrop-blur-[10px] border border-[rgba(255,255,255,0.4)] text-white font-semibold text-[16px] py-4 px-[30px] rounded-[100px] no-underline cursor-pointer [transition:background_.25s_ease,transform_.25s_ease]";
+
   return isInternal ? (
-    <Link href={href} style={buttonStyle} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
+    <Link href={href} className={className} style={buttonStyle} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
       {children}
     </Link>
   ) : (
-    <a href={href} style={buttonStyle} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
+    <a href={href} className={className} style={buttonStyle} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
       {children}
     </a>
   );

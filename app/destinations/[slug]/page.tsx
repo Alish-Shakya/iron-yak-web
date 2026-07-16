@@ -6,13 +6,12 @@ import { useParams, notFound } from "next/navigation";
 import { PageHero } from "../../components/PageHero";
 import { RouteMap } from "../../components/RouteMap";
 import { Reveal } from "../../components/Reveal";
-import { eyebrow, h2Base, INK, MANROPE, MUTED, ORANGE } from "../../components/theme";
 import { itineraries } from "../../data/itineraries";
 
 export default function DestinationDetailPage() {
   const params = useParams();
   const slug = params?.slug as string;
-  
+
   const itinerary = itineraries.find((it) => it.slug === slug);
   const [activeDay, setActiveDay] = useState<number | null>(0);
 
@@ -30,119 +29,82 @@ export default function DestinationDetailPage() {
       />
 
       {/* Back to all destinations */}
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "32px clamp(20px,5vw,64px) 0" }}>
+      <div className="mx-auto max-w-[1200px] px-[clamp(20px,5vw,64px)] pt-8 pb-0">
         <Link
           href="/destinations"
-          className="iy-back"
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 8,
-            color: MUTED,
-            fontFamily: MANROPE,
-            fontWeight: 600,
-            fontSize: 15,
-            textDecoration: "none",
-          }}
+          className="inline-flex items-center gap-2 text-[#6E6E73] font-[Manrope,sans-serif] font-semibold text-[15px] no-underline"
         >
-          <span aria-hidden style={{ fontSize: 18, lineHeight: 1, color: ORANGE }}>←</span>
+          <span aria-hidden className="text-[18px] leading-none text-[#EE6A22]">←</span>
           Back to destinations
         </Link>
       </div>
 
       {/* Overview Stats */}
-      <section style={{ padding: "28px clamp(20px,5vw,64px) 30px" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <Reveal
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-              gap: 20,
-              background: "#F6F5F3",
-              borderRadius: 20,
-              padding: "40px",
-              textAlign: "center",
-            }}
-          >
+      <section className="pt-7 px-[clamp(20px,5vw,64px)] pb-[30px]">
+        <div className="mx-auto max-w-[1200px]">
+          <Reveal className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-5 bg-[#F6F5F3] rounded-[20px] p-10 text-center">
             <div>
-              <div style={{ fontSize: 13, textTransform: "uppercase", letterSpacing: "0.1em", color: MUTED, fontWeight: 600 }}>Duration</div>
-              <div style={{ fontFamily: MANROPE, fontSize: 32, fontWeight: 800, color: "#1C1C1E", marginTop: 8 }}>{itinerary.duration}</div>
+              <div className="text-[13px] uppercase tracking-[0.1em] text-[#6E6E73] font-semibold">Duration</div>
+              <div className="font-[Manrope,sans-serif] text-[32px] font-extrabold text-[#1C1C1E] mt-2">{itinerary.duration}</div>
             </div>
             <div>
-              <div style={{ fontSize: 13, textTransform: "uppercase", letterSpacing: "0.1em", color: MUTED, fontWeight: 600 }}>Max Altitude</div>
-              <div style={{ fontFamily: MANROPE, fontSize: 32, fontWeight: 800, color: "#1C1C1E", marginTop: 8 }}>{itinerary.maxAltitude}</div>
+              <div className="text-[13px] uppercase tracking-[0.1em] text-[#6E6E73] font-semibold">Max Altitude</div>
+              <div className="font-[Manrope,sans-serif] text-[32px] font-extrabold text-[#1C1C1E] mt-2">{itinerary.maxAltitude}</div>
             </div>
             <div>
-              <div style={{ fontSize: 13, textTransform: "uppercase", letterSpacing: "0.1em", color: MUTED, fontWeight: 600 }}>Difficulty</div>
-              <div style={{ fontFamily: MANROPE, fontSize: 32, fontWeight: 800, color: "#EE6A22", marginTop: 8 }}>{itinerary.difficulty}</div>
+              <div className="text-[13px] uppercase tracking-[0.1em] text-[#6E6E73] font-semibold">Difficulty</div>
+              <div className="font-[Manrope,sans-serif] text-[32px] font-extrabold text-[#EE6A22] mt-2">{itinerary.difficulty}</div>
             </div>
             <div>
-              <div style={{ fontSize: 13, textTransform: "uppercase", letterSpacing: "0.1em", color: MUTED, fontWeight: 600 }}>Group Size</div>
-              <div style={{ fontFamily: MANROPE, fontSize: 32, fontWeight: 800, color: "#1C1C1E", marginTop: 8 }}>{itinerary.groupSize}</div>
+              <div className="text-[13px] uppercase tracking-[0.1em] text-[#6E6E73] font-semibold">Group Size</div>
+              <div className="font-[Manrope,sans-serif] text-[32px] font-extrabold text-[#1C1C1E] mt-2">{itinerary.groupSize}</div>
             </div>
           </Reveal>
         </div>
       </section>
 
       {/* Itinerary & Route Map Split */}
-      <section style={{ padding: "30px clamp(20px,5vw,64px) 60px" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1.1fr 0.9fr", gap: 50, alignItems: "start" }}>
-            
+      <section className="pt-[30px] px-[clamp(20px,5vw,64px)] pb-[60px]">
+        <div className="mx-auto max-w-[1200px]">
+          <div className="grid grid-cols-[1.1fr_0.9fr] gap-[50px] items-start">
+
             {/* Itinerary Column */}
             <div>
-              <Reveal style={{ marginBottom: 32 }}>
-                <div style={{ ...eyebrow, marginBottom: 12 }}>Trek Itinerary</div>
-                <h2 style={{ ...h2Base, fontSize: "clamp(28px, 3.8vw, 42px)", marginBottom: 16 }}>Day-by-Day Journey</h2>
-                <p style={{ color: MUTED, fontSize: 16, lineHeight: 1.6, margin: 0 }}>
+              <Reveal className="mb-8">
+                <div className="mb-3 text-[14px] font-bold uppercase tracking-[0.14em] text-[#EE6A22]">Trek Itinerary</div>
+                <h2 className="mt-0 font-[Manrope,sans-serif] text-[clamp(28px,3.8vw,42px)] font-extrabold leading-[1.05] tracking-[-0.03em] mb-4">Day-by-Day Journey</h2>
+                <p className="text-[#6E6E73] text-[16px] leading-[1.6] m-0">
                   A perfectly paced route for optimal acclimatization, led by certified guides.
                 </p>
               </Reveal>
 
-              <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+              <div className="flex flex-col gap-3.5">
                 {itinerary.days.map((day, idx) => {
                   const isOpen = activeDay === idx;
                   return (
                     <Reveal key={idx}>
                       <div
-                        style={{
-                          border: "1px solid #eee",
-                          borderRadius: 16,
-                          background: isOpen ? "#FAF9F6" : "#fff",
-                          boxShadow: isOpen ? "0 8px 24px rgba(28,28,30,.05)" : "none",
-                          overflow: "hidden",
-                          transition: "all .3s ease",
-                        }}
+                        className={`overflow-hidden rounded-2xl border border-[#eee] [transition:all_.3s_ease] ${isOpen ? "bg-[#FAF9F6] shadow-[0_8px_24px_rgba(28,28,30,0.05)]" : "bg-white shadow-none"}`}
                       >
                         <button
                           onClick={() => setActiveDay(isOpen ? null : idx)}
-                          style={{
-                            width: "100%",
-                            padding: "20px 24px",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "space-between",
-                            border: "none",
-                            background: "transparent",
-                            cursor: "pointer",
-                            textAlign: "left",
-                          }}
+                          className="w-full px-6 py-5 flex items-center justify-between border-none bg-transparent cursor-pointer text-left"
                         >
-                          <div style={{ display: "flex", alignItems: "baseline", gap: 14, flexWrap: "wrap" }}>
-                            <span style={{ fontSize: 14, fontWeight: 700, color: "#EE6A22", textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                          <div className="flex items-baseline gap-3.5 flex-wrap">
+                            <span className="text-[14px] font-bold text-[#EE6A22] uppercase tracking-[0.05em]">
                               {day.day}
                             </span>
-                            <span style={{ fontFamily: MANROPE, fontWeight: 700, fontSize: 17, color: "#1C1C1E" }}>
+                            <span className="font-[Manrope,sans-serif] font-bold text-[17px] text-[#1C1C1E]">
                               {day.title}
                             </span>
                           </div>
-                          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                            <span style={{ fontSize: 12, color: MUTED, fontWeight: 500 }}>{day.elevation}</span>
-                            <span style={{ fontSize: 16, color: isOpen ? "#EE6A22" : MUTED }}>{isOpen ? "−" : "+"}</span>
+                          <div className="flex items-center gap-3">
+                            <span className="text-[12px] text-[#6E6E73] font-medium">{day.elevation}</span>
+                            <span className={`text-[16px] ${isOpen ? "text-[#EE6A22]" : "text-[#6E6E73]"}`}>{isOpen ? "−" : "+"}</span>
                           </div>
                         </button>
                         {isOpen && (
-                          <div style={{ padding: "0 24px 20px 24px", color: MUTED, fontSize: 15, lineHeight: 1.6, borderTop: "1px solid #f6f6f6" }}>
+                          <div className="px-6 pt-0 pb-5 text-[#6E6E73] text-[15px] leading-[1.6] border-t border-[#f6f6f6]">
                             {day.desc}
                           </div>
                         )}
@@ -154,35 +116,27 @@ export default function DestinationDetailPage() {
             </div>
 
             {/* Interactive Route Map Column */}
-            <div style={{ position: "sticky", top: 120 }}>
-              <Reveal
-                style={{
-                  background: INK,
-                  borderRadius: 24,
-                  padding: "40px clamp(20px, 4vw, 48px)",
-                  color: "#fff",
-                  boxShadow: "0 20px 50px rgba(0,0,0,.15)",
-                }}
-              >
-                <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 12 }}>
-                  <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#EE6A22" }} />
-                  <span style={{ fontFamily: MANROPE, fontWeight: 700, fontSize: 16, letterSpacing: ".02em", color: "#fff" }}>
+            <div className="sticky top-[120px]">
+              <Reveal className="bg-[#1C1C1E] rounded-3xl py-10 px-[clamp(20px,4vw,48px)] text-white shadow-[0_20px_50px_rgba(0,0,0,0.15)]">
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="w-2 h-2 rounded-full bg-[#EE6A22]" />
+                  <span className="font-[Manrope,sans-serif] font-bold text-[16px] tracking-[0.02em] text-white">
                     {itinerary.routeLabel} Route
                   </span>
                 </div>
-                <p style={{ color: "rgba(255,255,255,.6)", fontSize: 14, lineHeight: 1.5, margin: "0 0 32px" }}>
+                <p className="text-[rgba(255,255,255,0.6)] text-[14px] leading-[1.5] mt-0 mx-0 mb-8">
                   {itinerary.routeMeta}
                 </p>
-                
-                <div style={{ filter: "drop-shadow(0 2px 10px rgba(0,0,0,.45))" }}>
+
+                <div className="[filter:drop-shadow(0_2px_10px_rgba(0,0,0,.45))]">
                   <RouteMap pathD={itinerary.pathD} stops={itinerary.stops} running={true} reduce={false} />
                 </div>
-                
-                <div style={{ marginTop: 40, borderTop: "1px solid rgba(255,255,255,.12)", paddingTop: 30 }}>
-                  <div style={{ fontSize: 13, textTransform: "uppercase", color: "rgba(255,255,255,.4)", fontWeight: 600, letterSpacing: "0.05em", marginBottom: 14 }}>
+
+                <div className="mt-10 border-t border-[rgba(255,255,255,0.12)] pt-[30px]">
+                  <div className="text-[13px] uppercase text-[rgba(255,255,255,0.4)] font-semibold tracking-[0.05em] mb-3.5">
                     Trip Inclusions
                   </div>
-                  <ul style={{ display: "grid", gridTemplateColumns: "1fr", gap: "10px 18px", padding: 0, margin: 0, listStyle: "none", fontSize: 14, color: "rgba(255,255,255,.8)" }}>
+                  <ul className="grid grid-cols-[1fr] gap-x-[18px] gap-y-[10px] p-0 m-0 list-none text-[14px] text-[rgba(255,255,255,0.8)]">
                     {itinerary.inclusions.map((inc, i) => (
                       <li key={i}>{inc}</li>
                     ))}
@@ -190,7 +144,7 @@ export default function DestinationDetailPage() {
                 </div>
               </Reveal>
             </div>
-            
+
           </div>
         </div>
       </section>

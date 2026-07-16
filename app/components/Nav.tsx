@@ -20,89 +20,39 @@ export function Nav() {
 
   return (
     <nav
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 100,
-        padding: solid
-          ? "14px clamp(20px,5vw,64px)"
-          : "22px clamp(20px,5vw,64px)",
-        background: solid ? "rgba(255,255,255,.88)" : "transparent",
-        backdropFilter: solid ? "blur(14px)" : "none",
-        WebkitBackdropFilter: solid ? "blur(14px)" : "none",
-        boxShadow: solid ? "0 4px 24px rgba(28,28,30,.08)" : "none",
-        transition:
-          "background .4s ease, padding .4s ease, box-shadow .4s ease, backdrop-filter .4s ease",
-      }}
+      className={`fixed left-0 right-0 top-0 z-[100] px-[clamp(20px,5vw,64px)] [transition:background_.4s_ease,padding_.4s_ease,box-shadow_.4s_ease,backdrop-filter_.4s_ease] ${
+        solid
+          ? "bg-[rgba(255,255,255,.88)] py-[14px] shadow-[0_4px_24px_rgba(28,28,30,.08)] backdrop-blur-[14px]"
+          : "bg-transparent py-[22px] shadow-none backdrop-blur-none"
+      }`}
     >
-      <div
-        style={{
-          maxWidth: 1200,
-          margin: "0 auto",
-          width: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
-        <Link
-          href="/"
-          style={{ display: "flex", alignItems: "center", lineHeight: 0 }}
-        >
+      <div className="mx-auto flex w-full max-w-[1200px] items-center justify-between">
+        <Link href="/" className="flex items-center leading-[0]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/assets/primary.png"
             alt="Iron Yak Tours & Travels"
-            style={{
-              height: "30px",
-              width: "auto",
-              display: "block",
-              filter: solid ? "none" : "drop-shadow(0 2px 8px rgba(0,0,0,.45))",
-            }}
+            className={`block h-[30px] w-auto ${
+              solid ? "" : "[filter:drop-shadow(0_2px_8px_rgba(0,0,0,.45))]"
+            }`}
           />
         </Link>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "clamp(18px,2.4vw,40px)",
-          }}
-        >
+        <div className="flex items-center gap-[clamp(18px,2.4vw,40px)]">
           {navLinks.map((l) => {
             const isActive = pathname === l.href;
-            const linkColor = isActive
-              ? "#EE6A22"
-              : solid
-                ? "#3A3A3C"
-                : "#ffffff";
             return (
               <Link
                 key={l.label}
                 href={l.href}
-                style={{
-                  fontSize: 15,
-                  fontWeight: isActive ? 700 : 500,
-                  color: linkColor,
-                  transition: "color .4s ease",
-                  position: "relative",
-                  padding: "4px 0",
-                }}
+                className={`relative py-1 text-[15px] [transition:color_.4s_ease] ${
+                  isActive
+                    ? "font-bold text-[#EE6A22]"
+                    : `font-extrabold ${solid ? "text-[#1C1C1E]" : "text-white"}`
+                }`}
               >
                 {l.label}
                 {isActive && (
-                  <span
-                    style={{
-                      position: "absolute",
-                      bottom: -2,
-                      left: 0,
-                      right: 0,
-                      height: 2,
-                      background: "#EE6A22",
-                      borderRadius: 2,
-                    }}
-                  />
+                  <span className="absolute bottom-[-2px] left-0 right-0 h-[2px] rounded-[2px] bg-[#EE6A22]" />
                 )}
               </Link>
             );
