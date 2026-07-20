@@ -1,5 +1,7 @@
 "use client";
 
+export const runtime = "edge";
+
 import Link from "next/link";
 import { useParams, notFound } from "next/navigation";
 import { PageHero } from "@/components/ui/PageHero";
