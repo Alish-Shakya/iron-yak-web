@@ -28,7 +28,7 @@ const OVERLAY_D =
 
 export const slides: Slide[] = [
   {
-    img: "/assets/image/1.jpg",
+    img: "/assets/image/3.jpg",
     imgAlt: "Himalayan mountains at dawn",
     overlay: OVERLAY_A,
     title: ["Journey to the", "Roof of the World"],
@@ -47,7 +47,7 @@ export const slides: Slide[] = [
   },
 
   {
-    img: "/assets/image/2.jpg",
+    img: "/assets/image/1.jpg",
     imgAlt: "Annapurna high country",
     overlay: OVERLAY_A,
     title: ["Into the Heart of", "the Annapurnas"],
@@ -66,7 +66,7 @@ export const slides: Slide[] = [
   },
 
   {
-    img: "/assets/image/3.jpg",
+    img: "/assets/image/2.jpg",
     imgAlt: "Alpenglow over the Himalaya",
     overlay: OVERLAY_B,
     title: ["Cross Nepal's", "Legendary Mountain Pass"],

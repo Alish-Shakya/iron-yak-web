@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import type { CSSProperties } from "react";
 import type { RouteStop } from "@/data/home";
 
@@ -20,6 +21,18 @@ export function RouteMap({
   /** Scales the station labels up for narrower containers (e.g. the detail-page sidebar). */
   labelScale?: number;
 }) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 768px)");
+    const listener = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    setIsMobile(media.matches);
+    media.addEventListener("change", listener);
+    return () => media.removeEventListener("change", listener);
+  }, []);
+
+  const activeScale = labelScale * (isMobile ? 1.6 : 1);
+
   const markerStyle = {
     offsetPath: `path('${pathD}')`,
     ...(reduce ? { offsetDistance: "55%" } : { "--iy-dur": "7.2s" }),
@@ -27,10 +40,10 @@ export function RouteMap({
 
   const fly = running && !reduce; // travel + wingbeat only while this slide is live
 
-  // Labels sit below the drop lines (which end at y=128); grow them with labelScale
+  // Labels sit below the drop lines (which end at y=128); grow them with activeScale
   // and push the coord line down so the two rows never collide.
-  const nameSize = 14 * labelScale;
-  const coordSize = 9.5 * labelScale;
+  const nameSize = 14 * activeScale;
+  const coordSize = 9.5 * activeScale;
   const nameY = 128 + 3 + nameSize;
   const coordY = nameY + 4 + coordSize;
   const viewH = Math.max(172, coordY + 6);
@@ -163,7 +176,7 @@ export function RouteMap({
               y={nameY}
               fontWeight="700"
               fontSize={nameSize}
-              letterSpacing={labelScale}
+              letterSpacing={activeScale}
               fill={i === 0 ? "#EE6A22" : "#ffffff"}
             >
               {s.name}
@@ -173,7 +186,7 @@ export function RouteMap({
               y={coordY}
               fontFamily="ui-monospace,Menlo,monospace"
               fontSize={coordSize}
-              letterSpacing={0.5 * labelScale}
+              letterSpacing={0.5 * activeScale}
               fill="rgba(255,255,255,.5)"
             >
               {s.coord}

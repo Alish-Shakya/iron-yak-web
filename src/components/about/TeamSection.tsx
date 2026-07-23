@@ -46,12 +46,12 @@ export function TeamSection() {
               key={idx}
               className="overflow-hidden rounded-[20px] border border-[#eee] bg-white shadow-[0_10px_30px_rgba(0,0,0,0.03)]"
             >
-              <div className="relative h-[280px]">
+              <div className="relative h-[340px]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={t.img}
                   alt={t.name}
-                  className="h-full w-full object-cover hover:scale-105"
+                  className="h-full w-full object-cover object-[center_20%] transition-transform duration-300 hover:scale-105"
                 />
               </div>
               <div className="p-6">

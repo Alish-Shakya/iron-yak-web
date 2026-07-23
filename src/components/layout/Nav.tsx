@@ -34,7 +34,7 @@ export function Nav() {
 
   // The menu panel gets a solid background, so treat links as if on a light surface.
   const isHome = pathname === "/";
-  const onLight = (solid && !isHome) || open;
+  const onLight = solid || !isHome || open;
 
   return (
     <nav
@@ -64,7 +64,8 @@ export function Nav() {
               <Link
                 key={l.label}
                 href={l.href}
-                className="relative py-1 text-[15px] font-extrabold  [transition:color_.4s_ease]"
+                className="relative py-1 text-[15px] font-extrabold [transition:color_.4s_ease]"
+                style={{ color: "#EE6A22" }}
               >
                 {l.label}
                 {isActive && (
@@ -91,7 +92,7 @@ export function Nav() {
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
-          className="flex h-10 w-10 flex-col items-center justify-center gap-[5px] md:hidden"
+          className="flex h-10 w-10 flex-col items-center justify-center gap-[5px] bg-transparent border-none p-0 outline-none cursor-pointer md:hidden"
         >
           <span
             className={`block h-[2px] w-6 rounded-full [transition:transform_.3s_ease,opacity_.3s_ease] ${

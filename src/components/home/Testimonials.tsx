@@ -12,7 +12,7 @@ export function Testimonials() {
   const [atStart, setAtStart] = useState(true);
   const [atEnd, setAtEnd] = useState(false);
 
-  const amount = () => (track.current ? Math.min(track.current.clientWidth * 0.85, 442) : 400);
+  const amount = () => (track.current ? track.current.clientWidth : 400);
   const scroll = (dir: number) => track.current?.scrollBy({ left: dir * amount(), behavior: "smooth" });
 
   useEffect(() => {
@@ -81,35 +81,39 @@ export function Testimonials() {
         </div>
       </Reveal>
 
-      <div
-        ref={track}
-        className="flex snap-x snap-mandatory gap-[22px] overflow-x-auto scroll-smooth px-[clamp(20px,5vw,64px)] pt-[6px] pb-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-      >
-        {testimonials.map((t) => (
-          <div
-            key={t.name}
-            className="snap-start rounded-[22px] border border-[#eee] bg-white p-[34px] shadow-[0_14px_36px_rgba(28,28,30,.07)] [flex:0_0_clamp(300px,38vw,420px)]"
-          >
-            <div className="mb-4 text-[17px] tracking-[2px] text-[#EE6A22]">★★★★★</div>
-            <p className="mx-0 mt-0 mb-[26px] text-[18px] font-medium leading-[1.6] text-[#2c2c2e]">
-              {t.quote}
-            </p>
-            <div className="flex items-center gap-[14px]">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={t.avatar}
-                alt=""
-                loading="lazy"
-                decoding="async"
-                className="h-[50px] w-[50px] rounded-full object-cover"
-              />
-              <div>
-                <div className="font-[Manrope,sans-serif] font-bold">{t.name}</div>
-                <div className="text-[14px] text-[#9a9a9e]">{t.trip}</div>
+      <div className="mx-auto w-full max-w-[650px] px-4">
+        <div
+          ref={track}
+          className="flex snap-x snap-mandatory gap-0 overflow-x-auto scroll-smooth pt-[6px] pb-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
+          {testimonials.map((t) => (
+            <div
+              key={t.name}
+              className="w-full flex-shrink-0 snap-center px-2"
+            >
+              <div className="rounded-[22px] border border-[#eee] bg-white p-[34px] shadow-[0_14px_36px_rgba(28,28,30,.07)]">
+                <div className="mb-4 text-[17px] tracking-[2px] text-[#EE6A22]">★★★★★</div>
+                <p className="mx-0 mt-0 mb-[26px] text-[18px] font-medium leading-[1.6] text-[#2c2c2e]">
+                  {t.quote}
+                </p>
+                <div className="flex items-center gap-[14px]">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={t.avatar}
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                    className="h-[50px] w-[50px] rounded-full object-cover"
+                  />
+                  <div>
+                    <div className="font-[Manrope,sans-serif] font-bold">{t.name}</div>
+                    <div className="text-[14px] text-[#9a9a9e]">{t.trip}</div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );
