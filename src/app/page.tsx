@@ -4,16 +4,17 @@ import { SignatureTrek } from "@/components/home/SignatureTrek";
 import { WhyIronYak } from "@/components/home/WhyIronYak";
 import { Testimonials } from "@/components/home/Testimonials";
 import { FinalCta } from "@/components/home/FinalCta";
+import { ClientLoader } from "@/components/ClientLoader";
 
 export default function Home() {
   return (
-    <>
+    <ClientLoader>
       <Hero />
       <Destinations />
       <SignatureTrek />
       <WhyIronYak />
       <Testimonials />
       <FinalCta />
-    </>
+    </ClientLoader>
   );
 }
