@@ -11,7 +11,7 @@ export function ItineraryContent({ itinerary }: { itinerary: Itinerary }) {
   return (
     <section className="pt-[30px] px-[clamp(20px,5vw,64px)] pb-[60px]">
       <div className="mx-auto max-w-[1200px]">
-        <div className="grid grid-cols-[1.1fr_0.9fr] gap-[50px] items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-10 lg:gap-[50px] items-start">
 
           <div>
             <Reveal className="mb-8">
@@ -32,23 +32,23 @@ export function ItineraryContent({ itinerary }: { itinerary: Itinerary }) {
                     >
                       <button
                         onClick={() => setActiveDay(isOpen ? null : idx)}
-                        className="w-full px-6 py-5 flex items-center justify-between border-none bg-transparent cursor-pointer text-left"
+                        className="w-full px-4 py-4 sm:px-6 sm:py-5 flex items-center justify-between border-none bg-transparent cursor-pointer text-left"
                       >
-                        <div className="flex items-baseline gap-3.5 flex-wrap">
-                          <span className="text-[14px] font-bold text-[#EE6A22] uppercase tracking-[0.05em]">
+                        <div className="flex items-baseline gap-3.5 flex-wrap flex-1 min-w-0 mr-3">
+                          <span className="text-[14px] font-bold text-[#EE6A22] uppercase tracking-[0.05em] shrink-0">
                             {day.day}
                           </span>
-                          <span className="font-[Manrope,sans-serif] font-bold text-[17px] text-[#1C1C1E]">
+                          <span className="font-[Manrope,sans-serif] font-bold text-[17px] text-[#1C1C1E] break-words">
                             {day.title}
                           </span>
                         </div>
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-3 shrink-0">
                           <span className="text-[12px] text-[#6E6E73] font-medium">{day.elevation}</span>
                           <span className={`text-[16px] ${isOpen ? "text-[#EE6A22]" : "text-[#6E6E73]"}`}>{isOpen ? "−" : "+"}</span>
                         </div>
                       </button>
                       {isOpen && (
-                        <div className="px-6 pt-0 pb-5 text-[#6E6E73] text-[15px] leading-[1.6] border-t border-[#f6f6f6]">
+                        <div className="px-4 sm:px-6 pt-0 pb-5 text-[#6E6E73] text-[15px] leading-[1.6] border-t border-[#f6f6f6]">
                           {day.desc}
                         </div>
                       )}
@@ -59,7 +59,7 @@ export function ItineraryContent({ itinerary }: { itinerary: Itinerary }) {
             </div>
           </div>
 
-          <div className="sticky top-[120px]">
+          <div className="lg:sticky lg:top-[120px]">
             <Reveal className="bg-[#1C1C1E] rounded-3xl py-10 px-[clamp(20px,4vw,48px)] text-white shadow-[0_20px_50px_rgba(0,0,0,0.15)]">
               <div className="flex items-center gap-3 mb-3">
                 <span className="w-2 h-2 rounded-full bg-[#EE6A22]" />
@@ -79,7 +79,7 @@ export function ItineraryContent({ itinerary }: { itinerary: Itinerary }) {
                 <div className="text-[13px] uppercase text-[rgba(255,255,255,0.4)] font-semibold tracking-[0.05em] mb-3.5">
                   Trip Inclusions
                 </div>
-                <ul className="grid grid-cols-[1fr] gap-x-[18px] gap-y-[10px] p-0 m-0 list-none text-[14px] text-[rgba(255,255,255,0.8)]">
+                <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-x-[18px] gap-y-[10px] p-0 m-0 list-none text-[14px] text-[rgba(255,255,255,0.8)]">
                   {itinerary.inclusions.map((inc, i) => (
                     <li key={i}>{inc}</li>
                   ))}

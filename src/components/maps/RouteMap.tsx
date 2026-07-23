@@ -31,7 +31,11 @@ export function RouteMap({
     return () => media.removeEventListener("change", listener);
   }, []);
 
-  const activeScale = labelScale * (isMobile ? 1.6 : 1);
+  const activeScale = isMobile
+    ? labelScale === 2
+      ? 1.8
+      : 1.5
+    : labelScale;
 
   const markerStyle = {
     offsetPath: `path('${pathD}')`,

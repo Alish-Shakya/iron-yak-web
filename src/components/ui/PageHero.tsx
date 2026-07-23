@@ -25,7 +25,7 @@ export function PageHero({
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(28,28,30,.6)_0%,rgba(28,28,30,.35)_40%,rgba(28,28,30,.75)_100%)]" />
       </div>
 
-      <div className="relative z-[2] mx-auto w-full max-w-[1200px] px-[clamp(20px,5vw,64px)] pt-[clamp(100px,12vh,140px)] pb-0 text-white">
+      <div className="relative z-[2] mx-auto w-full max-w-[1200px] px-[clamp(20px,5vw,64px)] pt-[clamp(80px,10vh,140px)] pb-0 text-white">
         <Reveal>
           {eyebrowText && (
             <div className="mb-3 text-[14px] font-bold uppercase tracking-[0.14em] text-[#EE6A22]">

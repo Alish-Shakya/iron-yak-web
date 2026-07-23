@@ -20,11 +20,11 @@ export function DestinationsGrid() {
                     className="block h-full w-full object-cover [transition:transform_.8s_cubic-bezier(.16,.84,.44,1)] group-hover:scale-[1.08]"
                   />
                   <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0)_42%,rgba(0,0,0,.78)_100%)]" />
-                  <div className="absolute bottom-[22px] left-[22px] right-[22px] text-white">
-                    <div className="mb-3 inline-block rounded-[100px] bg-[rgba(238,106,34,.92)] px-[12px] py-[5px] text-[12px] font-semibold">
+                  <div className="absolute bottom-[clamp(16px,5vw,22px)] left-[clamp(16px,5vw,22px)] right-[clamp(16px,5vw,22px)] text-white">
+                    <div className="mb-2.5 inline-block rounded-[100px] bg-[rgba(238,106,34,.92)] px-[12px] py-[5px] text-[12px] font-semibold">
                       {d.badge}
                     </div>
-                    <div className="font-[Manrope,sans-serif] text-[26px] font-extrabold tracking-[-.02em]">
+                    <div className="font-[Manrope,sans-serif] text-[clamp(20px,5vw,26px)] font-extrabold tracking-[-.02em] leading-tight">
                       {d.title}
                     </div>
                     <div className="mt-1 text-[14px] text-[rgba(255,255,255,.85)]">from {d.price}</div>

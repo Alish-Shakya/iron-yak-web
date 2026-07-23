@@ -4,8 +4,8 @@ import { PrimaryButton } from "@/components/ui/buttons";
 export function CustomTrekCta() {
   return (
     <section className="px-[clamp(20px,5vw,64px)] pt-[30px] pb-20">
-      <Reveal className="mx-auto flex max-w-[1200px] flex-wrap items-center justify-between gap-10 rounded-3xl bg-[#F6F5F3] px-[clamp(30px,6vw,80px)] py-[52px]">
-        <div className="flex-[1_1_500px]">
+      <Reveal className="mx-auto flex max-w-[1200px] flex-wrap items-center justify-between gap-10 rounded-3xl bg-[#F6F5F3] px-[clamp(20px,6vw,80px)] py-10 md:py-[52px]">
+        <div className="flex-1 min-w-[280px]">
           <h3 className="mt-0 mb-3 font-[Manrope,sans-serif] text-[clamp(26px,3vw,36px)] font-extrabold text-[#1C1C1E]">
             Looking for a custom experience?
           </h3>
