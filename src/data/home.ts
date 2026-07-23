@@ -28,7 +28,7 @@ const OVERLAY_D =
 
 export const slides: Slide[] = [
   {
-    img: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2100&q=80",
+    img: "/assets/image/1.jpg",
     imgAlt: "Himalayan mountains at dawn",
     overlay: OVERLAY_A,
     title: ["Journey to the", "Roof of the World"],
@@ -47,7 +47,7 @@ export const slides: Slide[] = [
   },
 
   {
-    img: "https://images.unsplash.com/photo-1472791108553-c9405341e398?auto=format&fit=crop&w=2100&q=80",
+    img: "/assets/image/2.jpg",
     imgAlt: "Annapurna high country",
     overlay: OVERLAY_A,
     title: ["Into the Heart of", "the Annapurnas"],
@@ -66,7 +66,7 @@ export const slides: Slide[] = [
   },
 
   {
-    img: "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=2100&q=80",
+    img: "/assets/image/3.jpg",
     imgAlt: "Alpenglow over the Himalaya",
     overlay: OVERLAY_B,
     title: ["Cross Nepal's", "Legendary Mountain Pass"],
@@ -84,7 +84,7 @@ export const slides: Slide[] = [
   },
 
   {
-    img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=2100&q=80",
+    img: "/assets/image/4.jpg",
     imgAlt: "Snow peaks and alpine valley",
     overlay: OVERLAY_C,
     title: ["Experience the", "Untouched Himalayas"],
@@ -102,7 +102,7 @@ export const slides: Slide[] = [
   },
 
   {
-    img: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=2100&q=80",
+    img: "/assets/image/5.jpg",
     imgAlt: "Misty pine forest trail",
     overlay: OVERLAY_D,
     title: ["Discover Nepal's", "Hidden Alpine Paradise"],

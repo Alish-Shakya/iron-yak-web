@@ -36,9 +36,9 @@ export function ContactInfo() {
             <div className="font-bold text-[16px] text-[#1C1C1E]">
               Phone Numbers
             </div>
-            <div className="mt-1 text-[15px] text-[#6E6E73]">
+            <div className="mt-1 text-[15px] text-[#6E6E73] flex flex-wrap items-center gap-x-1">
               <a href="tel:+97714700812" className="hover:text-[#EE6A22] transition-colors">+977 1 4700812</a>
-              &nbsp;|&nbsp;
+              <span aria-hidden="true">|</span>
               <a href="tel:+9779851023412" className="hover:text-[#EE6A22] transition-colors">+977 98510 23412</a>
             </div>
           </div>
@@ -50,9 +50,9 @@ export function ContactInfo() {
             <div className="font-bold text-[16px] text-[#1C1C1E]">
               Email Enquiries
             </div>
-            <div className="mt-1 text-[15px] text-[#6E6E73]">
+            <div className="mt-1 text-[15px] text-[#6E6E73] flex flex-wrap items-center gap-x-1">
               <a href="mailto:info@ironyak.com" className="hover:text-[#EE6A22] transition-colors">info@ironyak.com</a>
-              &nbsp;|&nbsp;
+              <span aria-hidden="true">|</span>
               <a href="mailto:bookings@ironyak.com" className="hover:text-[#EE6A22] transition-colors">bookings@ironyak.com</a>
             </div>
           </div>

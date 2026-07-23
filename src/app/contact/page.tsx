@@ -28,7 +28,7 @@ export default function ContactPage() {
 
       <section className="px-[clamp(20px,5vw,64px)] pt-20 pb-[60px]">
         <div className="mx-auto max-w-[1200px]">
-          <div className="grid grid-cols-[1.1fr_1.3fr] items-start gap-[50px]">
+          <div className="grid gap-[50px] md:grid-cols-[1.1fr_1.3fr]">
             <ContactInfo />
             <Reveal>
               <BookingForm />

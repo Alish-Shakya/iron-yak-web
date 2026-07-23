@@ -92,7 +92,7 @@ export function Hero() {
                       {s.routeLabel}
                     </span>
                   </div>
-                  <div className="font-[ui-monospace,SFMono-Regular,Menlo,monospace] text-[11.5px] tracking-[0.08em] text-[rgba(255,255,255,.5)]">
+                  <div className="font-[ui-monospace,SFMono-Regular,Menlo,monospace] text-[11.5px] font-bold tracking-[0.08em] text-[#EE6A22]">
                     {s.routeMeta}
                   </div>
                 </div>

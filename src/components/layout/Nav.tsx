@@ -33,7 +33,8 @@ export function Nav() {
   }, [open]);
 
   // The menu panel gets a solid background, so treat links as if on a light surface.
-  const onLight = solid || open;
+  const isHome = pathname === "/";
+  const onLight = (solid && !isHome) || open;
 
   return (
     <nav
@@ -63,11 +64,7 @@ export function Nav() {
               <Link
                 key={l.label}
                 href={l.href}
-                className={`relative py-1 text-[15px] [transition:color_.4s_ease] ${
-                  isActive
-                    ? "font-bold text-[#EE6A22]"
-                    : `font-extrabold ${solid ? "text-[#1C1C1E]" : "text-white"}`
-                }`}
+                className="relative py-1 text-[15px] font-extrabold  [transition:color_.4s_ease]"
               >
                 {l.label}
                 {isActive && (
@@ -127,11 +124,7 @@ export function Nav() {
               <Link
                 key={l.label}
                 href={l.href}
-                className={`rounded-[10px] px-3 py-3 text-[16px] font-extrabold [transition:background_.2s_ease] ${
-                  isActive
-                    ? "bg-[rgba(238,106,34,.1)] text-[#EE6A22]"
-                    : "text-[#1C1C1E] hover:bg-[rgba(28,28,30,.05)]"
-                }`}
+                className="rounded-[10px] px-3 py-3 text-[16px] font-extrabold text-[#EE6A22] [transition:background_.2s_ease] hover:bg-[rgba(238,106,34,.08)]"
               >
                 {l.label}
               </Link>
