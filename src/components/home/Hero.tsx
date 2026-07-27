@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { slides } from "@/data/home";
 import { RouteMap } from "@/components/maps/RouteMap";
+import { WalkYakIntro } from "@/components/home/WalkYakIntro";
 import { PrimaryButton, GhostButton } from "@/components/ui/buttons";
 
 const DUR = 7.2; // seconds each route is shown
@@ -18,14 +19,40 @@ export function Hero() {
     );
   });
 
+  // Walking-Yak intro state machine. `startIntro` fires after the loader reveal;
+  // `introDone` marks the handoff to the route marker. The slideshow is held on
+  // slide 0 until then, so the intro Yak walks onto a stationary trail.
+  const [startIntro, setStartIntro] = useState(false);
+  const [introDone, setIntroDone] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
+  const routeSvgRef = useRef<SVGSVGElement>(null);
+
+  // The background reveal (YakLoader) tells us when it has fully finished.
   useEffect(() => {
+    const onReveal = () => {
+      if (reduce) {
+        setIntroDone(true); // skip the elaborate walk-in for reduced motion
+        return;
+      }
+      // Short, intentional beat after the reveal before the Yak assembles.
+      setTimeout(() => setStartIntro(true), 600);
+    };
+    window.addEventListener("iy:reveal-complete", onReveal);
+    return () => window.removeEventListener("iy:reveal-complete", onReveal);
+  }, [reduce]);
+
+  // Auto-advance only once the Yak has reached the trail — keeps slide 0 (the
+  // handoff target) stationary through the whole intro.
+  useEffect(() => {
+    if (!introDone) return;
     const wait = reduce ? 5200 : DUR * 1000 + 400;
     const t = setTimeout(() => setCur((c) => (c + 1) % slides.length), wait);
     return () => clearTimeout(t);
-  }, [cur, reduce]);
+  }, [cur, reduce, introDone]);
 
   return (
     <header
+      ref={headerRef}
       id="top"
       className="relative h-screen min-h-[660px] overflow-hidden"
     >
@@ -99,14 +126,26 @@ export function Hero() {
                 <RouteMap
                   pathD={s.pathD}
                   stops={s.stops}
-                  running={on}
+                  running={on && introDone}
                   reduce={reduce}
+                  showMarker={introDone}
+                  svgRef={on ? routeSvgRef : undefined}
                 />
               </div>
             </div>
           </div>
         );
       })}
+
+      {/* One-time walking-Yak flourish: assembles centre-screen, then walks down
+          onto the trail and hands off to the route marker. */}
+      {startIntro && (
+        <WalkYakIntro
+          headerRef={headerRef}
+          routeSvgRef={routeSvgRef}
+          onArrived={() => setIntroDone(true)}
+        />
+      )}
 
       {/* slide indicators */}
       <div className="absolute left-1/2 bottom-[14px] -translate-x-1/2 z-[6] flex gap-[9px]">

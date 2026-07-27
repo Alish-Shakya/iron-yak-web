@@ -23,10 +23,29 @@ a:hover { color: #EE6A22; }
 @keyframes iy-zoom { from { transform: scale(1); } to { transform: scale(1.14); } }
 @keyframes iy-travel { from { offset-distance: 0%; } to { offset-distance: 100%; } }
 
-/* traveling route marker (bird) — banks along the path as it flies; the
-   wingbeat + bob are driven by SMIL <animateTransform> inside the SVG. */
+/* traveling route marker (the walking Yak) — banks along the path as it walks;
+   the leg/head/bounce cycle is driven by the .yak-walk keyframes below. */
 .iy-marker { offset-rotate: auto; offset-distance: 0%; filter: drop-shadow(0 1px 2px rgba(0,0,0,.55)); }
 .iy-marker.iy-run { animation: iy-travel var(--iy-dur, 7s) linear forwards; }
+
+/* --- walking Yak: an organic step cycle shared by the intro overlay and the
+   route marker. legA/legB swing in antiphase, the head nods gently, and the
+   body bounces twice per stride. Each shard pivots about its own bounding box
+   (transform-box: fill-box) so nothing is distorted or repositioned. --- */
+@keyframes iy-yak-legA   { 0%, 100% { rotate:  5deg; } 50% { rotate: -5deg; } }
+@keyframes iy-yak-legB   { 0%, 100% { rotate: -5deg; } 50% { rotate:  5deg; } }
+@keyframes iy-yak-head   { 0%, 100% { rotate: -2deg; } 50% { rotate: 2deg; } }
+@keyframes iy-yak-bounce { 0%, 50%, 100% { translate: 0 0; } 25%, 75% { translate: 0 -2.5px; } }
+
+.yak-legA, .yak-legB, .yak-head { transform-box: fill-box; }
+.yak-walk .yak-legA { transform-origin: 50% 0%;   animation: iy-yak-legA var(--yak-step, .62s) ease-in-out infinite; }
+.yak-walk .yak-legB { transform-origin: 50% 0%;   animation: iy-yak-legB var(--yak-step, .62s) ease-in-out infinite; }
+.yak-walk .yak-head { transform-origin: 50% 100%; animation: iy-yak-head calc(var(--yak-step, .62s) * 2) ease-in-out infinite; }
+.yak-walk .yak-bounce { animation: iy-yak-bounce var(--yak-step, .62s) ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .yak-walk .yak-legA, .yak-walk .yak-legB, .yak-walk .yak-head, .yak-walk .yak-bounce { animation: none; }
+}
 
 /* scroll reveal (driven by the <Reveal> component) */
 .iy-reveal { opacity: 0; transform: translateY(34px); transition: opacity .9s cubic-bezier(.16,.84,.44,1), transform .9s cubic-bezier(.16,.84,.44,1); }

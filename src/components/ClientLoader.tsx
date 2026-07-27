@@ -27,7 +27,15 @@ export function ClientLoader({ children }: { children: React.ReactNode }) {
   return (
     <>
       {loading && (
-        <YakLoader reduced={reduced} onComplete={() => setLoading(false)} />
+        <YakLoader
+          reduced={reduced}
+          onComplete={() => {
+            setLoading(false);
+            // Signal the hero that the background reveal has fully finished, so its
+            // walking-Yak sequence can begin (after a short, intentional delay).
+            window.dispatchEvent(new CustomEvent("iy:reveal-complete"));
+          }}
+        />
       )}
       {/* Page is painted at full opacity behind the loader so it can be revealed through the
           wordmark holes; it just isn't interactive until the loader unmounts. */}
