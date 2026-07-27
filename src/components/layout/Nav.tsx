@@ -48,7 +48,7 @@ export function Nav() {
         <Link href="/" className="flex items-center leading-[0]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/assets/primary.png"
+            src={onLight ? "/assets/primary.png" : "/assets/logo-horizontal.svg"}
             alt="Iron Yak Tours & Travels"
             className={`block h-[30px] w-auto ${
               onLight ? "" : "[filter:drop-shadow(0_2px_8px_rgba(0,0,0,.45))]"
