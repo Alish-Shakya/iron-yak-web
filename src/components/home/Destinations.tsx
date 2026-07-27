@@ -46,7 +46,10 @@ export function Destinations() {
                   <div className="font-[Manrope,sans-serif] text-[26px] font-extrabold tracking-[-0.02em]">
                     {d.title}
                   </div>
-                  <div className="mt-1 text-[14px] text-[rgba(255,255,255,.85)]">from {d.price}</div>
+                  <div className="mt-1 text-[14px] text-[rgba(255,255,255,.85)]">
+                    from{" "}
+                    <span className="text-[#EE6A22] font-bold">{d.price}</span>
+                  </div>
                 </div>
               </Link>
             </Reveal>

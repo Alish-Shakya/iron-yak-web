@@ -37,7 +37,7 @@ export function PrimaryButton({
     padding,
     boxShadow: hover ? hoverShadow : shadow,
     transform: hover ? `translateY(${lift})` : "none",
-    color: isFilledAction ? (hover ? "#fff" : "#000") : customColor,
+    color: isFilledAction ? "#fff" : customColor,
     background,
     ...styleWithoutColor,
   };
@@ -65,11 +65,11 @@ export function GhostButton({ href, children }: { href: string; children: ReactN
   const buttonStyle: CSSProperties = {
     background: hover ? "rgba(255,255,255,.24)" : "rgba(255,255,255,.12)",
     transform: hover ? "translateY(-3px)" : "none",
-    color: "#EE6A22",
+    color: "#fff",
   };
 
   const className =
-    "inline-flex items-center gap-2.5 backdrop-blur-[10px] border border-[rgba(255,255,255,0.4)] text-[#EE6A22] font-semibold text-[16px] py-4 px-[30px] rounded-[100px] no-underline cursor-pointer [transition:background_.25s_ease,transform_.25s_ease]";
+    "inline-flex items-center gap-2.5 backdrop-blur-[10px] border border-[rgba(255,255,255,0.4)] text-white font-semibold text-[16px] py-4 px-[30px] rounded-[100px] no-underline cursor-pointer [transition:background_.25s_ease,transform_.25s_ease]";
 
   return isInternal ? (
     <Link href={href} className={className} style={buttonStyle} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>

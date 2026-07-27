@@ -78,7 +78,7 @@ export function Footer() {
                 placeholder="Your email"
                 className="flex-1 bg-transparent border-none outline-none text-white text-[14px] font-[Inter,sans-serif]"
               />
-              <button className="border-none bg-[#EE6A22] text-black font-semibold text-[14px] px-[18px] py-2.5 rounded-[100px] cursor-pointer transition-colors duration-200 hover:text-white">
+              <button className="border-none bg-[#EE6A22] text-white font-semibold text-[14px] px-[18px] py-2.5 rounded-[100px] cursor-pointer transition-colors duration-200">
                 Join
               </button>
             </div>

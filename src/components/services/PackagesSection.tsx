@@ -143,7 +143,7 @@ export function PackagesSection() {
                   textAlign: "center",
                   justifyContent: "center",
                   background: pkg.popular ? "#EE6A22" : "transparent",
-                  color: pkg.popular ? "#fff" : "#EE6A22",
+                  color: "#fff",
                   border: pkg.popular ? "none" : "1px solid #EE6A22",
                 }}
               >

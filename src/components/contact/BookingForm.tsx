@@ -109,7 +109,7 @@ export function BookingForm() {
 
           <button
             type="submit"
-            className="mt-[10px] cursor-pointer rounded-[100px] border-none bg-[#EE6A22] p-4 text-[16px] font-semibold text-black shadow-[0_10px_24px_rgba(238,106,34,0.35)] [transition:transform_0.2s_ease,box-shadow_0.2s_ease,color_0.2s_ease] hover:text-white"
+            className="mt-[10px] cursor-pointer rounded-[100px] border-none bg-[#EE6A22] p-4 text-[16px] font-semibold text-white shadow-[0_10px_24px_rgba(238,106,34,0.35)] [transition:transform_0.2s_ease,box-shadow_0.2s_ease,color_0.2s_ease]"
             onMouseEnter={(e) => {
               (e.target as HTMLButtonElement).style.transform = "translateY(-2px)";
               (e.target as HTMLButtonElement).style.boxShadow = "0 14px 30px rgba(238,106,34,.45)";

@@ -25,7 +25,7 @@ const assemblyVariants = {
     rotate: 0,
     opacity: 1,
     scale: 1,
-    transition: { delay: c.delay, type: "spring" as const, stiffness: 55, damping: 12, mass: 1 },
+    transition: { delay: c.delay * 0.4, type: "spring" as const, stiffness: 110, damping: 15, mass: 0.85 },
   }),
 };
 
@@ -69,8 +69,8 @@ export function WalkYakIntro({
   useEffect(() => {
     if (!size) return;
     const timers: ReturnType<typeof setTimeout>[] = [];
-    timers.push(setTimeout(() => setPhase("hold"), 2100));
-    timers.push(setTimeout(() => setPhase("walk"), 3000)); // ~0.9s hold, then it comes alive
+    timers.push(setTimeout(() => setPhase("hold"), 900));
+    timers.push(setTimeout(() => setPhase("walk"), 1350)); // ~0.45s hold, then it comes alive
     timers.push(
       setTimeout(() => {
         // Compute where the base-station marker sits on screen and aim the Yak there.
@@ -110,16 +110,16 @@ export function WalkYakIntro({
           });
         }
         setPhase("toTrail");
-      }, 4300)
+      }, 2450)
     );
     timers.push(
       setTimeout(() => {
         setPhase("done");
         arrivedRef.current(); // RouteMap marker takes over from here
-      }, 6700)
+      }, 4150)
     );
     // Let the marker appear, then fade the intro Yak out under the crossfade.
-    timers.push(setTimeout(() => setGone(true), 7000));
+    timers.push(setTimeout(() => setGone(true), 4450));
     return () => timers.forEach(clearTimeout);
   }, [size, headerRef, routeSvgRef]);
 
@@ -143,9 +143,9 @@ export function WalkYakIntro({
             opacity: gone ? 0 : 1,
           }}
           transition={{
-            x: { duration: 2.4, ease: [0.4, 0, 0.2, 1] },
-            y: { duration: 2.4, ease: [0.4, 0, 0.2, 1] },
-            scale: { duration: 2.4, ease: [0.4, 0, 0.2, 1] },
+            x: { duration: 1.7, ease: [0.4, 0, 0.2, 1] },
+            y: { duration: 1.7, ease: [0.4, 0, 0.2, 1] },
+            scale: { duration: 1.7, ease: [0.4, 0, 0.2, 1] },
             opacity: { duration: 0.4, ease: "easeOut" },
           }}
           style={{ width: "100%", transformOrigin: "50% 50%" }}
