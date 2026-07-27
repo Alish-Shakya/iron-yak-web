@@ -1,21 +1,37 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { YakLoader } from "@/components/YakLoader";
 
 export function ClientLoader({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
+  const [reduced] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return (
+      !!window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    );
+  });
+
+  // Lock scroll and pin to the top while the loader runs, so the reveal frames the top of the page.
+  useEffect(() => {
+    if (!loading) return;
+    const prev = document.body.style.overflow;
+    window.scrollTo(0, 0);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [loading]);
 
   return (
     <>
-      {loading && <YakLoader onComplete={() => setLoading(false)} />}
-      <div
-        style={{
-          opacity: loading ? 0 : 1,
-          transition: "opacity 0.8s ease-in-out",
-          pointerEvents: loading ? "none" : "auto",
-        }}
-      >
+      {loading && (
+        <YakLoader reduced={reduced} onComplete={() => setLoading(false)} />
+      )}
+      {/* Page is painted at full opacity behind the loader so it can be revealed through the
+          wordmark holes; it just isn't interactive until the loader unmounts. */}
+      <div aria-hidden={loading} style={{ pointerEvents: loading ? "none" : "auto" }}>
         {children}
       </div>
     </>
